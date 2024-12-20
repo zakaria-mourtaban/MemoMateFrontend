@@ -28,7 +28,6 @@ import {
 import "./style.css"
 import Theme from './Theme.ts';
 import ToolbarPlugin from './ToolbarPlugin.tsx';
-import TreeViewPlugin from './TreeViewPlugin.tsx';
 import {parseAllowedColor, parseAllowedFontSize} from './styleConfig.ts';
 import React from 'react';
 
