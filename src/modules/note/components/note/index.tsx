@@ -15,8 +15,9 @@ import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
+import { TRANSFORMERS } from '@lexical/markdown'; import ToolbarPlugin from "./plugins/ToolbarPlugin.tsx";
+import Nodes from './nodes.tsx';
 import { SelectionAlwaysOnDisplay } from "@lexical/react/LexicalSelectionAlwaysOnDisplay";
-import ToolbarPlugin from "./plugins/ToolbarPlugin.tsx";
 import basetheme from "./themes/basetheme.ts";
 import "./styles/style.css";
 import "@fontsource/poppins";
@@ -32,6 +33,7 @@ function Note() {
 		namespace: "Note",
 		basetheme,
 		onError,
+		nodes: [...Nodes],
 	};
 
 	return (
@@ -57,6 +59,7 @@ function Note() {
 					<AutoFocusPlugin />
 				</div>
 			</div>
+			<MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
 		</LexicalComposer>
 	);
 }
