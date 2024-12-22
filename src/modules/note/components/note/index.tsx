@@ -55,7 +55,6 @@ function Note() {
 					/>
 					<HistoryPlugin />
 					<AutoFocusPlugin />
-					<MarkdownShortcutPlugin />
 				</div>
 			</div>
 		</LexicalComposer>
