@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/poppins": "^5.1.0",
     "@lexical/react": "^0.21.0",
     "cra-template-typescript": "1.2.0",
     "lexical": "^0.21.0",
