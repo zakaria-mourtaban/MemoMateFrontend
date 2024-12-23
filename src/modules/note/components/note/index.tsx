@@ -1,5 +1,5 @@
 import { $getRoot, $getSelection } from "lexical";
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect } from "react";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
@@ -14,13 +14,16 @@ import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
-import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
-import { TRANSFORMERS } from '@lexical/markdown'; import ToolbarPlugin from "./plugins/ToolbarPlugin.tsx";
-import Nodes from './nodes.tsx';
 import { SelectionAlwaysOnDisplay } from "@lexical/react/LexicalSelectionAlwaysOnDisplay";
+import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
+import { TRANSFORMERS } from "@lexical/markdown";
+import ToolbarPlugin from "./plugins/ToolbarPlugin.tsx";
+import Nodes from "./nodes.tsx";
+import { DraggableBlockPlugin_EXPERIMENTAL } from "@lexical/react/LexicalDraggableBlockPlugin";
 import basetheme from "./themes/basetheme.ts";
 import "./styles/style.css";
 import "@fontsource/poppins";
+import { DraggableBlockPlugin } from "./plugins/DragableBlockPlugin/DragableBlockPlugin.tsx";
 
 const placeholder = "Let your thoughts flow";
 
@@ -35,7 +38,13 @@ function Note() {
 		onError,
 		nodes: [...Nodes],
 	};
+	const menuRef = useRef<HTMLDivElement>(null);
+	const targetLineRef = useRef<HTMLDivElement>(null);
+	const DRAGGABLE_BLOCK_MENU_CLASSNAME = "draggable-block-menu";
 
+	function isOnMenu(element: HTMLElement): boolean {
+		return !!element.closest(`.${DRAGGABLE_BLOCK_MENU_CLASSNAME}`);
+	}
 	return (
 		<LexicalComposer initialConfig={initialConfig}>
 			<div className="editor-container">
@@ -59,7 +68,8 @@ function Note() {
 					<AutoFocusPlugin />
 				</div>
 			</div>
-			<MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
+			<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+			<DraggableBlockPlugin/>
 		</LexicalComposer>
 	);
 }
