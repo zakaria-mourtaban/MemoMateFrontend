@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Note from "./modules/note/components/note/index.tsx";
+import Note from "./modules/note";
 import { Provider } from 'react-redux'; // Import Provider from react-redux
 
 function App() {
