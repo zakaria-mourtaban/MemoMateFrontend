@@ -29,9 +29,44 @@ import {
 	MDXEditorMethods,
 	useCellValue,
 	currentSelection$,
-	RealmProvider
+	RealmProvider,
+	activePlugins$,
+	editorInFocus$,
+	activeEditor$,
+	rootEditor$,
+	useCell,
 } from "@mdxeditor/editor";
 
+import { $getSelection, $isRangeSelection } from "lexical";
+
+const GetSelection = () => {
+	// Access the root editor instance
+	const rootEditor = useCellValue(rootEditor$);
+
+	const getCurrentSelection = () => {
+		if (rootEditor) {
+			rootEditor.update(() => {
+				// Get the current selection
+				const selection = $getSelection();
+
+				if (selection && $isRangeSelection(selection)) {
+					// Access details about the selection
+					const anchorNode = selection.anchor.getNode();
+					const focusNode = selection.focus.getNode();
+					const selectedText = selection.getTextContent();
+
+					console.log("Anchor Node:", anchorNode);
+					console.log("Focus Node:", focusNode);
+					console.log("Selected Text:", selectedText);
+				} else {
+					console.log("No text selection found.");
+				}
+			});
+		}
+	};
+
+	return <Button onClick={getCurrentSelection}>getSelection</Button>;
+};
 async function imageUploadHandler(image: File) {
 	const formData = new FormData();
 	formData.append("image", image);
@@ -46,11 +81,11 @@ async function imageUploadHandler(image: File) {
 }
 
 function Editor() {
-	const editorref = useRef<MDXEditorMethods>(null);
 	const currentSelection = useCellValue(currentSelection$);
+	const rootEditor = useCell(rootEditor$);
+	console.log(rootEditor);
 	return (
 		<MDXEditor
-			ref={editorref}
 			autoFocus
 			markdown="# Hello world"
 			plugins={[
@@ -68,13 +103,7 @@ function Editor() {
 							<InsertCodeBlock />
 							<InsertThematicBreak />
 							<ListsToggle />
-							<Button
-								onClick={() => {
-									console.log(currentSelection);
-								}}
-							>
-								AI
-							</Button>
+							<GetSelection />
 						</>
 					),
 				}),
@@ -108,8 +137,8 @@ function Editor() {
 const App = () => {
 	return (
 		<RealmProvider>
-			<Editor/>
+			<Editor />
 		</RealmProvider>
-	)
-}
+	);
+};
 export default App;
