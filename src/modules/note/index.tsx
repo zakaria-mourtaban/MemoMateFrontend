@@ -1,5 +1,5 @@
 import "@mdxeditor/editor/style.css";
-import React from "react";
+import React, { useRef } from "react";
 import {
 	MDXEditor,
 	headingsPlugin,
@@ -22,6 +22,14 @@ import {
 	codeBlockPlugin,
 	codeMirrorPlugin,
 	imagePlugin,
+	markdownShortcutPlugin,
+	directivesPlugin,
+	AdmonitionDirectiveDescriptor,
+	Button,
+	MDXEditorMethods,
+	useCellValue,
+	currentSelection$,
+	RealmProvider
 } from "@mdxeditor/editor";
 
 async function imageUploadHandler(image: File) {
@@ -37,9 +45,13 @@ async function imageUploadHandler(image: File) {
 	return json.url;
 }
 
-function App() {
+function Editor() {
+	const editorref = useRef<MDXEditorMethods>(null);
+	const currentSelection = useCellValue(currentSelection$);
 	return (
 		<MDXEditor
+			ref={editorref}
+			autoFocus
 			markdown="# Hello world"
 			plugins={[
 				toolbarPlugin({
@@ -50,12 +62,19 @@ function App() {
 							<UndoRedo />
 							<BoldItalicUnderlineToggles />
 							<BlockTypeSelect />
-							<InsertImage />
 							<CreateLink />
+							<InsertImage />
 							<InsertTable />
+							<InsertCodeBlock />
 							<InsertThematicBreak />
 							<ListsToggle />
-							<InsertCodeBlock />
+							<Button
+								onClick={() => {
+									console.log(currentSelection);
+								}}
+							>
+								AI
+							</Button>
 						</>
 					),
 				}),
@@ -71,14 +90,26 @@ function App() {
 						typescript: "Typescript",
 					},
 				}),
+				thematicBreakPlugin(),
+				linkDialogPlugin(),
 				headingsPlugin(),
 				listsPlugin(),
-				quotePlugin(),
-				thematicBreakPlugin(),
 				linkPlugin(),
-				linkDialogPlugin(),
+				quotePlugin(),
+				markdownShortcutPlugin(),
+				directivesPlugin({
+					directiveDescriptors: [AdmonitionDirectiveDescriptor],
+				}),
 			]}
 		/>
 	);
+}
+
+const App = () => {
+	return (
+		<RealmProvider>
+			<Editor/>
+		</RealmProvider>
+	)
 }
 export default App;
