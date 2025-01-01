@@ -1,0 +1,8 @@
+.draggable-item {
+	cursor: grab;
+  }
+  
+  .draggable-item:active {
+	cursor: grabbing;
+  }
+  
