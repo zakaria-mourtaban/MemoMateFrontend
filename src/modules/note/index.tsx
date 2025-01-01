@@ -201,7 +201,7 @@ function Editor() {
 				directivesPlugin({
 					directiveDescriptors: [AdmonitionDirectiveDescriptor],
 				}),
-				DraggableParagraphPlugin(),
+				// DraggableParagraphPlugin(),
 			]}
 		/>
 	);
