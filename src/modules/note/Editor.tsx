@@ -1,32 +1,22 @@
 import {
 	AdmonitionDirectiveDescriptor,
-	BlockTypeSelect,
-	BoldItalicUnderlineToggles,
 	codeBlockPlugin,
 	codeMirrorPlugin,
-	CreateLink,
 	directivesPlugin,
 	headingsPlugin,
 	imagePlugin,
-	InsertCodeBlock,
-	InsertImage,
-	InsertTable,
-	InsertThematicBreak,
 	linkDialogPlugin,
 	linkPlugin,
 	listsPlugin,
-	ListsToggle,
 	markdownShortcutPlugin,
 	MDXEditor,
 	quotePlugin,
 	tablePlugin,
 	thematicBreakPlugin,
-	toolbarPlugin,
-	UndoRedo,
 } from "@mdxeditor/editor";
 import React from "react";
-import AISelection from "./AISelection";
 import imageUploadHandler from "./utils/imageUploadHandler";
+import toolbar from "./toolbar";
 
 const Editor = () => {
 	return (
@@ -36,23 +26,7 @@ const Editor = () => {
 			sadsadasd
 			asdasdsa"
 			plugins={[
-				toolbarPlugin({
-					toolbarClassName: "toolbar",
-					toolbarContents: () => (
-						<>
-							<UndoRedo />
-							<BoldItalicUnderlineToggles />
-							<BlockTypeSelect />
-							<CreateLink />
-							<InsertImage />
-							<InsertTable />
-							<InsertCodeBlock />
-							<InsertThematicBreak />
-							<ListsToggle />
-							<AISelection />
-						</>
-					),
-				}),
+				toolbar(),
 				imagePlugin({ imageUploadHandler }),
 				codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
 				codeMirrorPlugin({
@@ -82,4 +56,4 @@ const Editor = () => {
 	);
 };
 
-export default Editor
+export default Editor;
