@@ -22,7 +22,7 @@ const Signup = () => {
 						</div>
 					</div>
 				</div>
-				<div>
+				<div className="inputs">
 					<div className="input">
 						<p>Username</p>
 						<input type="Name" placeholder="arcticpoet76" />
@@ -33,7 +33,7 @@ const Signup = () => {
 					</div>
 					<div className="input">
 						<p>Password</p>
-						<input type="Password" placeholder="************" />
+						<input type="Password" placeholder="••••••••••••" />
 					</div>
 				</div>
 				<div className="signup-submit">
