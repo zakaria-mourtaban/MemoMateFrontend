@@ -1,5 +1,5 @@
 // FileTreeView.tsx
-import React, { useEffect, useRef, useState } from "react";
+import React, {useRef} from "react";
 import { Tree, TreeApi } from "react-arborist";
 import Node from "./node";
 
@@ -10,6 +10,8 @@ import {
 	FilePlus2,
 	FolderPlus,
 } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, setCollapsed } from "../../store/store";
 
 interface FileNode {
 	id: string;
@@ -24,13 +26,15 @@ interface FileTreeViewProps {
 
 const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 	const treeRef = useRef<TreeApi<FileNode>>(null);
-	const [collapsed, setCollapsed] = useState(true);
+	const collapsed = useSelector(
+		(state: RootState) => state.treeView.collapsed
+	);
+	const dispatch = useDispatch();
 	Node.displayName = "Node";
 	const alterAll = (): void => {
-		if (treeRef.current) {
-			treeRef.current.closeAll();
-			setCollapsed(true);
-		}
+		if (collapsed === false) treeRef.current.closeAll();
+		else treeRef.current.openAll();
+		dispatch(setCollapsed(!collapsed));
 	};
 	return (
 		<div className="file-tree-container">
@@ -44,7 +48,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 						<FolderPlus />
 					</button>
 					<button onClick={alterAll}>
-						collapsed ? <ChevronsUpDown /> : <ChevronsDownUp />
+						{collapsed ? <ChevronsUpDown /> : <ChevronsDownUp />}
 					</button>
 				</div>
 			</div>

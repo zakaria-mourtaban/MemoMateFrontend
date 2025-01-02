@@ -1,9 +1,9 @@
 // src/Layout.tsx
 import React from "react";
-import { Outlet } from "react-router-dom";
 import Navbar from "../core/components/navbar";
 import TreeViewComponent from "./treeview";
-
+import ExcalidrawComponent from "./excalidraw/Excalidraw";
+import "./styles/style.css"
 // src/types.ts
 export interface FileNode {
 	id: string;
@@ -39,9 +39,11 @@ const Note: React.FC = () => {
 		<div>
 			<Navbar />
 			<div className="main-content">
-				<TreeViewComponent data={treeData} />
+				<div className="treeview">
+					<TreeViewComponent data={treeData} />
+				</div>
 				<div className="content-area">
-					<Outlet />
+					<ExcalidrawComponent />
 				</div>
 			</div>
 		</div>

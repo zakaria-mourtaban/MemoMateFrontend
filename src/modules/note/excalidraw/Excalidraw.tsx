@@ -56,9 +56,9 @@ const ExcalidrawComponent = () => {
 					theme={theme}
 					viewModeEnabled={viewModeEnabled}
 					gridModeEnabled={gridVisible}
-					onChange={(elements, state) => {
-						console.log("Elements:", elements, "State:", state);
-					}}
+					// onChange={(elements, state) => {
+					// 	console.log("Elements:", elements, "State:", state);
+					// }}
 					initialData={{
 						elements: [],
 						appState: {

@@ -1,8 +1,14 @@
-.draggable-item {
-	cursor: grab;
-  }
-  
-  .draggable-item:active {
-	cursor: grabbing;
-  }
-  
+.main-content
+{
+	display: flex;
+}
+
+.content-area
+{
+	flex: 4;
+}
+
+.treeview
+{
+	flex: 1;
+}

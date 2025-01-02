@@ -1,49 +1,29 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { useSelector, useDispatch } from 'react-redux';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-// Define the Draggable type
-type Draggable = {
-  htmlElement: HTMLElement;
-  data: {
-    top: number;
-    left: number;
-    height: number;
-  };
-};
-
-// Define the initial state
-const initialState = {
-  draggable: undefined as Draggable | undefined,
-};
-
-// Create a slice for the draggable store
-const draggableSlice = createSlice({
-  name: 'draggable',
-  initialState,
+// Create the slice
+const treeViewSlice = createSlice({
+  name: 'treeView',
+  initialState: {
+    collapsed: false,
+  },
   reducers: {
-    setDraggable: (state, action) => {
-      state.draggable = action.payload;
+    setCollapsed: (state, action) => {
+      state.collapsed = action.payload;
     },
   },
 });
 
-// Extract the actions
-export const { setDraggable } = draggableSlice.actions;
+// Export actions
+export const { setCollapsed } = treeViewSlice.actions;
 
 // Create the store
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    draggable: draggableSlice.reducer,
+    treeView: treeViewSlice.reducer,
   },
 });
 
-// Hook to access the draggable state
-export const useDraggableStore = () => {
-  const dispatch = useDispatch();
-  const draggable = useSelector((state: { draggable: typeof initialState }) => state.draggable.draggable);
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-  return {
-    draggable,
-    setDraggable: (value: Draggable) => dispatch(setDraggable(value)),
-  };
-};
+export default store;
