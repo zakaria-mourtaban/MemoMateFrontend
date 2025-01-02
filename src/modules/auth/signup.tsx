@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Logo from "../core/components/logo";
 import "./styles/signup.css";
 
 const Signup = () => {
+	const navigate = useNavigate()
 	return (
 		<div className="signup-container">
 			<div className="signup">
@@ -38,7 +40,13 @@ const Signup = () => {
 				</div>
 				<div className="signup-submit">
 					<div className="signup-btn">
-						<button>Signup</button>
+						<button
+							onClick={() => {
+								navigate("/workspaces");
+							}}
+						>
+							Signup
+						</button>
 					</div>
 					<div className="redirect">
 						<div>Already have and account? </div>
