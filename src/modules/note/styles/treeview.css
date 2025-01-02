@@ -4,18 +4,19 @@
 	flex-direction: column;
 	align-items: flex-start;
 	padding: 10px;
-  }
-  
-  .tree-view {
+}
+
+.tree-view {
 	width: 200px;
 	transition: width 0.3s ease;
-  }
-  
-  .tree-view.open {
+	overflow: hidden;
+}
+
+.tree-view.open {
 	width: 200px;
-  }
-  
-  .tree-view.closed {
+}
+
+.tree-view.closed {
 	width: 0;
 	overflow: hidden;
-  }
+}
