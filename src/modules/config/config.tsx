@@ -1,6 +1,6 @@
 const Config = () => {
 	return (
-		<div className=""></div>
+		<div className="config"></div>
 	)
 };
 export default Config;
