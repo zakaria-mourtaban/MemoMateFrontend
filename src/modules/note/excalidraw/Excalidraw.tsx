@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
+import "../styles/excalidraw.css"
 
 const ExcalidrawComponent = () => {
 	//   const excalidrawRef = useRef(null);
@@ -66,7 +67,7 @@ const ExcalidrawComponent = () => {
 							gridSize: 20,
 						},
 					}}
-					name="Custom Excalidraw Canvas"
+					name="Excalidraw Canvas"
 					UIOptions={{
 						canvasActions: {
 							loadScene: true,

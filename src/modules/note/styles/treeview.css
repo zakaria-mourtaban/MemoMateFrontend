@@ -1,9 +1,9 @@
 /* FileTreeView.css */
 .file-tree-container {
 	width: 100%;
-	border: 1px solid #e2e8f0;
-	border-radius: 4px;
-	background-color: white;
+	border-radius: 10px;
+	background-color: #FF7EB9;
+	height: 100%;
 }
 
 .file-tree-header {
@@ -102,4 +102,11 @@
 
 .tree-content::-webkit-scrollbar-thumb:hover {
 	background: #94a3b8;
+}
+
+.file-actions  > button
+{
+	border: none;
+	background-color: #64748b00;
+	color: white;
 }

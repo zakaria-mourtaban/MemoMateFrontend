@@ -6,9 +6,11 @@
 .content-area
 {
 	flex: 4;
+	margin: 1%;
 }
 
 .treeview
 {
 	flex: 1;
+	margin: 1%;
 }
