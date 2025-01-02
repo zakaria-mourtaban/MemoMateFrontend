@@ -1,22 +1,105 @@
-/* src/TreeView.css */
-.tree-view-container {
+/* FileTreeView.css */
+.file-tree-container {
+	width: 100%;
+	border: 1px solid #e2e8f0;
+	border-radius: 4px;
+	background-color: white;
+}
+
+.file-tree-header {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 10px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+	border-bottom: 1px solid #e2e8f0;
 }
 
-.tree-view {
-	width: 200px;
-	transition: width 0.3s ease;
-	overflow: hidden;
+.header-title {
+	font-size: 16px;
+	font-weight: 500;
+	margin: 0;
 }
 
-.tree-view.open {
-	width: 200px;
+.collapse-button {
+	padding: 4px 8px;
+	font-size: 14px;
+	background-color: #f1f5f9;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
 }
 
-.tree-view.closed {
-	width: 0;
-	overflow: hidden;
+.collapse-button:hover {
+	background-color: #e2e8f0;
+}
+
+.tree-content {
+	padding: 8px;
+}
+
+.tree-node {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.tree-node:hover {
+	background-color: #f1f5f9;
+}
+
+.tree-node.selected {
+	background-color: #e0f2fe;
+}
+
+.toggle-button {
+	width: 16px;
+	height: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.icon {
+	width: 16px;
+	height: 16px;
+}
+
+.icon.folder {
+	color: #3b82f6;
+}
+
+.icon.file {
+	color: #64748b;
+}
+
+.node-name {
+	user-select: none;
+	font-size: 14px;
+	color: #1e293b;
+}
+
+/* Optional: Add custom scrollbar styles */
+.tree-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.tree-content::-webkit-scrollbar-track {
+	background: #f1f5f9;
+}
+
+.tree-content::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+.tree-content::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
 }
