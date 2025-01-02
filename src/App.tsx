@@ -18,6 +18,7 @@ function App() {
 						<Route path="/chats" element={<Chats />} />
 						<Route path="/workspaces" element={<Workspaces />} />
 						<Route path="/preferences" element={<Config />} />
+						<Route path="/admin" element={<Admin />} />
 					</Routes>
 				</div>
 			</Provider>
