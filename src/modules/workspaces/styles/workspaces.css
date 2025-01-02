@@ -19,7 +19,7 @@
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-	height: 150px;
+	height: 170px;
 }
 
 .workspaces-add-button:hover {
@@ -37,8 +37,8 @@
 .workspaces-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
     padding: 10px;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
@@ -54,7 +54,7 @@
 /* button contatiner div */
 .workspaces-item > div
 {
-	
+
 }
 .workspaces-item-header {
     position: absolute;
@@ -62,7 +62,7 @@
     right: 5px;
 }
 
-.workspaces-delete-icon {
+.workspaces-delete-button {
     background: none;
     border: none;
     color: #dc3545;
@@ -71,7 +71,7 @@
     transition: color 0.3s;
 }
 
-.workspaces-delete-icon:hover {
+.workspaces-delete-button:hover {
     color: #c82333;
 }
 

@@ -25,18 +25,20 @@ const Workspaces = () => {
 			<div className="workspaces-container">
 				<div className="workspaces-list">
 					{workspaces.map((workspace) => (
-						<div key={workspace.id} className="workspaces-item">
-							<div>
-								<button
-									className="workspaces-delete-button"
-									onClick={() =>
-										deleteWorkspace(workspace.id)
-									}
-								>
-									🗑️
-								</button>
-							</div>
+						<div>
 							<span>{workspace.name}</span>
+							<div key={workspace.id} className="workspaces-item">
+								<div>
+									<button
+										className="workspaces-delete-button"
+										onClick={() =>
+											deleteWorkspace(workspace.id)
+										}
+									>
+										🗑️
+									</button>
+								</div>
+							</div>
 						</div>
 					))}
 					<button
