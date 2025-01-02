@@ -10,6 +10,7 @@ import Login from "modules/auth/login";
 import Chats from "modules/chats/chats";
 import Workspaces from "modules/workspaces/workspaces";
 import Config from "modules/config/config";
+import Admin from "modules/admin/admin";
 
 function App() {
 	return (
