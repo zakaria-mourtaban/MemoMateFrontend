@@ -7,6 +7,7 @@ import store from "./store/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Signup from "modules/auth/signup";
 import Login from "modules/auth/login";
+import Chats from "modules/chats/chats";
 
 function App() {
 	return (
