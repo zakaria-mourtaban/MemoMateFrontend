@@ -1,14 +1,12 @@
 // src/Navbar.tsx
 import React from "react";
 import "../styles/navbar.css";
+import Logo from "./logo";
 const Navbar: React.FC = () => {
 	return (
 		<nav className="navbar">
 			<div className="logo">
-				<img
-					src={require("../../../assets/icons/Zakaria Mourtaban_NoText.png")}
-					alt="Logo"
-				/>
+				<Logo/>
 			</div>
 			<div className="nav-divs">
 				<h4>Workspace</h4>
