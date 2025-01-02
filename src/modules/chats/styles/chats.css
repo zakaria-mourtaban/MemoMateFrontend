@@ -10,10 +10,12 @@
 }
 
 .chat-tree {
+	margin: 10px;
 	width: 250px;
-	background-color: #f0f0f0;
+	background-color: #f0f0f000;
+	border: 2px solid #ffd4e8;
+	border-radius: 15px;
 	padding: 10px;
-	border-right: 1px solid #ccc;
 }
 
 .chat-item {
