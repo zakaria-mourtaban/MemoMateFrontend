@@ -4,9 +4,9 @@ import "../styles/excalidraw.css"
 
 const ExcalidrawComponent = () => {
 	//   const excalidrawRef = useRef(null);
-	const [theme, setTheme] = useState<"light" | "dark">("light");
-	const [viewModeEnabled, setViewModeEnabled] = useState(false);
-	const [gridVisible, setGridVisible] = useState(true);
+	// const [theme, setTheme] = useState<"light" | "dark">("light");
+	// const [viewModeEnabled, setViewModeEnabled] = useState(false);
+	// const [gridVisible, setGridVisible] = useState(true);
 
 	//   const handleSave = () => {
 	//     if (excalidrawRef.current) {
@@ -54,9 +54,9 @@ const ExcalidrawComponent = () => {
 			<div style={{ flex: 1 }}>
 				<Excalidraw
 					validateEmbeddable={() => true}
-					theme={theme}
-					viewModeEnabled={viewModeEnabled}
-					gridModeEnabled={gridVisible}
+					// theme={theme}
+					// viewModeEnabled={viewModeEnabled}
+					// gridModeEnabled={gridVisible}
 					// onChange={(elements, state) => {
 					// 	console.log("Elements:", elements, "State:", state);
 					// }}

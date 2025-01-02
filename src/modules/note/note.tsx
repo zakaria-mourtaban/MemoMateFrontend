@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../core/components/navbar";
 import TreeViewComponent from "./treeview";
 import ExcalidrawComponent from "./excalidraw/Excalidraw";
-import "./styles/style.css"
+import "./styles/style.css";
 // src/types.ts
 export interface FileNode {
 	id: string;
@@ -23,14 +23,26 @@ const Note: React.FC = () => {
 				},
 				{
 					id: "test4",
-					name: "test",
-					children: [],
+					name: "tedsfsdfsdst",
+					children: [
+						{
+							id: "test5",
+							name: "tesdsfsdfsdft",
+							children: [
+								{
+									id: "test6",
+									name: "tessdsdffsdft",
+									children: [],
+								},
+							],
+						},
+					],
 				},
 			],
 		},
 		{
 			id: "test1",
-			name: "testballs",
+			name: "testing",
 			children: [],
 		},
 	];

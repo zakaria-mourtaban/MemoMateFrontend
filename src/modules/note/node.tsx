@@ -1,12 +1,10 @@
 import {
-	FolderOpen,
-	Folder,
-	File,
 	ChevronDown,
 	ChevronRight,
 } from "lucide-react";
 import React from "react";
 import { NodeApi } from "react-arborist";
+import "./styles/node.css"
 
 interface FileNode {
 	id: string;
@@ -44,17 +42,6 @@ const Node = React.forwardRef<HTMLDivElement, NodeProps>(
 							<ChevronRight className="icon" />
 						))}
 				</button>
-
-				{isFolder ? (
-					node.isOpen ? (
-						<FolderOpen className="icon folder" />
-					) : (
-						<Folder className="icon folder" />
-					)
-				) : (
-					<File className="icon file" />
-				)}
-
 				<span className="node-name">{node.data.name}</span>
 			</div>
 		);

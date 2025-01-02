@@ -2,16 +2,17 @@
 .file-tree-container {
 	width: 100%;
 	border-radius: 10px;
-	background-color: #FF7EB9;
+	background-color: #FFD4E8;
 	height: 100%;
+	padding-top: 10px;
+	font-size: 24px;
 }
 
 .file-tree-header {
 	display: flex;
-	justify-content: space-between;
+	justify-content: end;
 	align-items: center;
 	padding: 8px 16px;
-	border-bottom: 1px solid #e2e8f0;
 }
 
 .header-title {
@@ -44,15 +45,22 @@
 	gap: 8px;
 	padding: 4px;
 	cursor: pointer;
+	border-radius: 5px;
 	transition: background-color 0.2s ease;
 }
 
 .tree-node:hover {
-	background-color: #f1f5f9;
+	box-sizing: border-box;
+	border: 1px solid #FF7EB9;
 }
 
 .tree-node.selected {
-	background-color: #e0f2fe;
+	background-color: #FF7EB9;
+}
+
+.tree-node.selected:hover
+{
+	border: none;
 }
 
 .toggle-button {
@@ -64,6 +72,7 @@
 	background: none;
 	border: none;
 	padding: 0;
+	margin-left: 4px;
 	cursor: pointer;
 }
 
@@ -72,18 +81,10 @@
 	height: 16px;
 }
 
-.icon.folder {
-	color: #3b82f6;
-}
-
-.icon.file {
-	color: #64748b;
-}
-
 .node-name {
 	user-select: none;
 	font-size: 14px;
-	color: #1e293b;
+	color: #000000;
 }
 
 /* Optional: Add custom scrollbar styles */
@@ -108,5 +109,14 @@
 {
 	border: none;
 	background-color: #64748b00;
-	color: white;
+	font-size: small;
+}
+
+.file-actions
+{
+	width: 100%;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	height: 30px;
 }

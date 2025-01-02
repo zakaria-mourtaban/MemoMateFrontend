@@ -11,9 +11,9 @@ const Navbar: React.FC = () => {
 				/>
 			</div>
 			<div className="nav-divs">
-				<div>Workspace</div>
-				<div>Chats</div>
-				<div>Statistics</div>
+				<h4>Workspace</h4>
+				<h4>Chats</h4>
+				<h4>Statistics</h4>
 			</div>
 			<div className="pfp"></div>
 		</nav>

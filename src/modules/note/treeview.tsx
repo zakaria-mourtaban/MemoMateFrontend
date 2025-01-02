@@ -1,5 +1,5 @@
 // FileTreeView.tsx
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { Tree, TreeApi } from "react-arborist";
 import Node from "./node";
 
@@ -38,19 +38,20 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 	};
 	return (
 		<div className="file-tree-container">
-			<div className="file-tree-header">
-				<h3 className="header-title">File Explorer</h3>
 				<div className="file-actions">
 					<button>
-						<FilePlus2 />
+						<FilePlus2 size={25} />
 					</button>
 					<button>
-						<FolderPlus />
+						<FolderPlus size={25} />
 					</button>
 					<button onClick={alterAll}>
-						{collapsed ? <ChevronsUpDown /> : <ChevronsDownUp />}
+						{collapsed ? (
+							<ChevronsUpDown size={25} />
+						) : (
+							<ChevronsDownUp size={25} />
+						)}
 					</button>
-				</div>
 			</div>
 			<div className="tree-content">
 				<Tree<FileNode>
