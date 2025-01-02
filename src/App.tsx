@@ -9,6 +9,7 @@ import Signup from "modules/auth/signup";
 import Login from "modules/auth/login";
 import Chats from "modules/chats/chats";
 import Workspaces from "modules/workspaces/workspaces";
+import Config from "modules/config/config";
 
 function App() {
 	return (
