@@ -5,12 +5,12 @@ import Notes from "./modules/note/note";
 import { Provider } from "react-redux"; // Import Provider from react-redux
 import store from "./store/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signup from "modules/auth/signup";
-import Login from "modules/auth/login";
-import Chats from "modules/chats/chats";
-import Workspaces from "modules/workspaces/workspaces";
-import Config from "modules/config/config";
-import Admin from "modules/admin/admin";
+import Signup from "./modules/auth/signup";
+import Login from "./modules/auth/login";
+import Chats from "./modules/chats/chats";
+import Workspaces from "./modules/workspaces/workspaces";
+import Config from "./modules/config/config";
+import Admin from "./modules/admin/admin";
 
 function App() {
 	return (
