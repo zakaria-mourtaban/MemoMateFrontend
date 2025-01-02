@@ -67,12 +67,6 @@ const Chats = () => {
 							{chat.name}
 						</div>
 					))}
-					<button
-						className="new-chat-button"
-						onClick={() => navigate("/new-chat")}
-					>
-						New Chat
-					</button>
 				</div>
 				<div className="chat-window">
 					<div className="chat-messages">

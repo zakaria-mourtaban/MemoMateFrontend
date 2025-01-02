@@ -2,88 +2,79 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-  }
-  
-  .chats-container {
+}
+
+.chats-container {
 	display: flex;
 	flex: 1;
-  }
-  
-  .chat-tree {
+}
+
+.chat-tree {
 	width: 250px;
 	background-color: #f0f0f0;
 	padding: 10px;
 	border-right: 1px solid #ccc;
-  }
-  
-  .chat-item {
+}
+
+.chat-item {
 	padding: 10px;
 	margin-bottom: 5px;
 	cursor: pointer;
 	background-color: #fff;
 	border: 1px solid #ccc;
-  }
-  
-  .chat-item.active {
+}
+
+.chat-item.active {
 	background-color: #e0e0e0;
-  }
-  
-  .new-chat-button {
-	margin-top: 10px;
-	padding: 10px;
-	width: 100%;
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	cursor: pointer;
-  }
-  
-  .new-chat-button:hover {
-	background-color: #0056b3;
-  }
-  
-  .chat-window {
+}
+
+.chat-window {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-  }
-  
-  .chat-messages {
+	padding: 10px;
+}
+
+.chat-messages {
 	flex: 1;
 	padding: 10px;
 	overflow-y: auto;
-  }
-  
-  .message {
+	display: flex;
+	flex-direction: column;
+}
+
+.message {
 	padding: 10px;
 	margin-bottom: 5px;
 	border-radius: 5px;
-  }
-  
-  .message.user {
+	max-width: 70%;
+	word-wrap: break-word;
+}
+
+.message.user {
 	background-color: #dcf8c6;
 	align-self: flex-end;
-  }
-  
-  .message.bot {
+}
+
+.message.bot {
 	background-color: #f1f0f0;
 	align-self: flex-start;
-  }
-  
-  .chat-input {
+}
+
+.chat-input {
 	display: flex;
 	padding: 10px;
 	border-top: 1px solid #ccc;
-  }
-  
-  .chat-input input {
+}
+
+.chat-input input {
 	flex: 1;
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-  }
-  
-  .chat-input button {
+}
+
+.chat-input button {
 	padding: 10px 20px;
 	margin-left: 10px;
 	background-color: #007bff;
@@ -91,8 +82,8 @@
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-  }
-  
-  .chat-input button:hover {
+}
+
+.chat-input button:hover {
 	background-color: #0056b3;
-  }
+}
