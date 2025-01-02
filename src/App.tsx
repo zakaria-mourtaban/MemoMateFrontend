@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Signup from "modules/auth/signup";
 import Login from "modules/auth/login";
 import Chats from "modules/chats/chats";
+import Workspaces from "modules/workspaces/workspaces";
 
 function App() {
 	return (
