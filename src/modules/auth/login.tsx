@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Logo from "../core/components/logo";
 import "./styles/login.css";
 
 const Login = () => {
+	const navigate = useNavigate();
 	return (
 		<div className="login-container">
 			<div className="demo"></div>
@@ -35,7 +37,13 @@ const Login = () => {
 				</div>
 				<div className="login-submit">
 					<div className="login-btn">
-						<button>Login</button>
+						<button
+							onClick={() => {
+								navigate("/workspaces");
+							}}
+						>
+							Login
+						</button>
 					</div>
 					<div className="redirect">
 						<div>Don't have and account? </div>
