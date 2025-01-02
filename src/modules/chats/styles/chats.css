@@ -22,12 +22,12 @@
 	padding: 10px;
 	margin-bottom: 5px;
 	cursor: pointer;
-	background-color: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #fcc3de;
+	border-radius: 10px;
 }
 
 .chat-item.active {
-	background-color: #e0e0e0;
+	background-color: #ffc0dd;
 }
 
 .chat-window {
