@@ -1,4 +1,5 @@
 import Logo from "../core/components/logo";
+import "./styles/signup.css"
 
 const Signup = () => {
 	return (

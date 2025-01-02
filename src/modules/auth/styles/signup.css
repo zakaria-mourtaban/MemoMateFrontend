@@ -1,0 +1,26 @@
+.signup-container
+{
+	height: 100vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.demo
+{
+	width: 45vw;
+	height: 90vh;
+	background-color: rgb(68, 68, 68);
+}
+
+.signup
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.logo
+{
+	height: 100px;
+	width: 100px;
+}
