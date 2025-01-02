@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "@excalidraw/excalidraw": "^0.17.6",
-    "@fontsource/poppins": "^5.1.0",
+    "@fontsource/poppins": "^5.1.1",
     "@mdxeditor/editor": "^3.20.0",
     "@reduxjs/toolkit": "^2.5.0",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/parser": "^8.18.2",
     "cra-template-typescript": "1.2.0",
     "novel": "^0.5.0",
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-treeview": "^0.4.6"
   }
 }

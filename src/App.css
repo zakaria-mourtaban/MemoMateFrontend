@@ -1,9 +1,6 @@
-.draggable-block-menu {
-	cursor: grab;
-	background-color: #f0f0f0;
-}
-
-.draggable-block-target-line {
-	height: 2px;
-	background-color: #007bff;
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins";
 }
