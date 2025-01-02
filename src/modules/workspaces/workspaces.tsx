@@ -1,6 +1,7 @@
 // Workspaces.js
 import React, { useState } from 'react';
 import Navbar from '../core/components/navbar';
+import "./styles/workspaces.css"
 
 const Workspaces = () => {
     const [workspaces, setWorkspaces] = useState([]);
