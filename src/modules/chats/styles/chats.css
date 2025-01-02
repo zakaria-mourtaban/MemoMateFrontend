@@ -52,19 +52,23 @@
 }
 
 .message.user {
-	background-color: #dcf8c6;
+	background-color: #ffd4e8;
 	align-self: flex-end;
+	border-top-right-radius: 0%;
 }
 
 .message.bot {
-	background-color: #f1f0f0;
+	background-color: #ffd4e8;
 	align-self: flex-start;
+	border-top-left-radius: 0%;
 }
 
 .chat-input {
 	display: flex;
 	padding: 10px;
-	border-top: 1px solid #ccc;
+	border: 2px solid #ffd4e8;
+	border-radius: 10px;
+	align-items: center;
 }
 
 .chat-input input {
@@ -83,13 +87,15 @@
 .chat-input button {
 	padding: 10px 20px;
 	margin-left: 10px;
-	background-color: #007bff;
-	color: #fff;
+	background-color: #ffd4e8;
+	color: #000000;
+	font-weight: 600;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	height: 40px;
 }
 
 .chat-input button:hover {
-	background-color: #0056b3;
+	background-color: #fcc3de;
 }
