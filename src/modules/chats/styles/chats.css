@@ -33,6 +33,9 @@
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
+	border: 2px solid #ffd4e8;
+	border-radius: 15px;
+	margin: 10px;
 }
 
 .chat-messages {
@@ -69,6 +72,7 @@
 	border: 2px solid #ffd4e8;
 	border-radius: 10px;
 	align-items: center;
+	height: 5%;
 }
 
 .chat-input input {
