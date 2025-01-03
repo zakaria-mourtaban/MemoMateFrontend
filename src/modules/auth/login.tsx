@@ -46,7 +46,7 @@ const Login = () => {
 						</button>
 					</div>
 					<div className="redirect">
-						<div>Don't have and account? </div>
+						<div>Don't have an account? </div>
 						<div className="redirect-link">Sign Up</div>
 					</div>
 				</div>
