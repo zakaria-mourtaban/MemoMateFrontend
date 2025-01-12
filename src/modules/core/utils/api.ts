@@ -6,3 +6,9 @@ export const setTokenCookie = (token) => {
 };
 
 
+// Retrieve token from the cookie
+export const getTokenFromCookie = () => {
+    const match = document.cookie.match(/(^|;) ?token=([^;]*)(;|$)/);
+    return match ? match[2] : null;
+};
+
