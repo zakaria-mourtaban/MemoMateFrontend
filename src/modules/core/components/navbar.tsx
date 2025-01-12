@@ -9,9 +9,9 @@ const Navbar: React.FC = () => {
 				<Logo/>
 			</div>
 			<div className="nav-divs">
-				<h4>Workspace</h4>
-				<h4>Chats</h4>
-				<h4>Statistics</h4>
+				<p>Workspace</p>
+				<p>Chats</p>
+				<p>Statistics</p>
 			</div>
 			<div className="pfp"></div>
 		</nav>

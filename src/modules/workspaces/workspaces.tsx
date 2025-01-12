@@ -26,7 +26,6 @@ const Workspaces = () => {
 				<div className="workspaces-list">
 					{workspaces.map((workspace) => (
 						<div>
-							<span>{workspace.name}</span>
 							<div key={workspace.id} className="workspaces-item">
 								<div>
 									<button
@@ -39,6 +38,7 @@ const Workspaces = () => {
 									</button>
 								</div>
 							</div>
+							<span>{workspace.name}</span>
 						</div>
 					))}
 					<button

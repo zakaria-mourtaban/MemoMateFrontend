@@ -45,7 +45,7 @@ const Signup = () => {
 								navigate("/workspaces");
 							}}
 						>
-							Signup
+							Sign Up
 						</button>
 					</div>
 					<div className="redirect">

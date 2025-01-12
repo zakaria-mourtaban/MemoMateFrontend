@@ -51,11 +51,11 @@
 
 .tree-node:hover {
 	box-sizing: border-box;
-	border: 1px solid #FF7EB9;
+	border: 1px solid #fdb2d4;
 }
 
 .tree-node.selected {
-	background-color: #FF7EB9;
+	background-color: #fdb2d4;
 }
 
 .tree-node.selected:hover

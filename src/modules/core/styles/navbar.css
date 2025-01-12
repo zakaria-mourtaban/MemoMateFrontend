@@ -1,5 +1,4 @@
-img
-{
+img {
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -9,8 +8,9 @@ img
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 20px;
-	background-color: #FFD4E8;
+	background-color: #ffd4e8;
 	max-height: 5%;
+	min-height: 5%;
 }
 
 .logo,
@@ -40,15 +40,13 @@ img
 	text-decoration: underline;
 }
 
-.nav-divs
-{
+.nav-divs {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	width: 40%;
 }
-.logo
-{
+.logo {
 	max-width: 50px;
 	max-height: 50px;
 }
