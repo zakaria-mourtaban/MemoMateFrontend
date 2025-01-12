@@ -12,3 +12,14 @@ export const getTokenFromCookie = () => {
     return match ? match[2] : null;
 };
 
+// Function to make authenticated API calls
+export const apiCall = async (method, url, data = null) => {
+    const token = getTokenFromCookie();
+    if (!token) {
+        throw new Error("No token found. Please log in again.");
+    }
+    const headers = {
+        Authorization: `Bearer ${token}`,
+    };
+    return axios({ method, url, data, headers });
+};
