@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../core/components/logo";
-import { signup } from "./api";
+import { signup } from "../core/utils/api";
 import "./styles/signup.css";
 
 const Signup = () => {
