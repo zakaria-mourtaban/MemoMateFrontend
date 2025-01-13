@@ -22,6 +22,7 @@ const ExcalidrawComponent = () => {
 						},
 					}}
 					name="Excalidraw Canvas"
+					handleKeyboardGlobally={false}
 					UIOptions={{
 						canvasActions: {
 							loadScene: true,
