@@ -18,7 +18,9 @@ const Workspaces = () => {
 				}
 			},
 		}).then((e) => {
-			console.log(e);
+			if (e.isDismissed)
+				return
+			apiCall("POST", "api/workspace", {name: e.value}, true)
 		});
 	};
 

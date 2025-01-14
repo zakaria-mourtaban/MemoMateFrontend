@@ -1,6 +1,5 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-// Create the slice
 const treeViewSlice = createSlice({
   name: 'treeView',
   initialState: {
@@ -13,10 +12,8 @@ const treeViewSlice = createSlice({
   },
 });
 
-// Export actions
 export const { setCollapsed } = treeViewSlice.actions;
 
-// Create the store
 const store = configureStore({
   reducer: {
     treeView: treeViewSlice.reducer,
