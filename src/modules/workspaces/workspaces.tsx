@@ -1,11 +1,27 @@
 // Workspaces.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../core/components/navbar";
 import "./styles/workspaces.css";
 import { apiCall } from "../core/utils/api";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, setWorkspace } from "../../store/store";
 const Workspaces = () => {
-	const [workspaces, setWorkspaces] = useState([]);
+	// const [workspaces, setWorkspaces] = useState([]);
+	const workspaces = useSelector(
+		(state: RootState) => state.workspaceApi.workspaces
+	);
+	const dispatch = useDispatch();
+
+	const loadWorkspace = async () => {
+		const data = await apiCall("GET", "api/workspace", {}, true).then(
+			(res) => {
+				return res.data;
+			}
+		);
+		dispatch(setWorkspace(data.workspaces))
+		console.log(workspaces);
+	};
 
 	const addWorkspace = async () => {
 		await Swal.fire({
@@ -18,15 +34,22 @@ const Workspaces = () => {
 				}
 			},
 		}).then((e) => {
-			if (e.isDismissed)
-				return
-			apiCall("POST", "api/workspace", {name: e.value}, true)
+			if (e.isDismissed) return;
+			apiCall("POST", "api/workspace", { name: e.value }, true).then(
+				() => {
+					loadWorkspace();
+				}
+			);
 		});
 	};
 
 	const deleteWorkspace = (id) => {
-		setWorkspaces(workspaces.filter((workspace) => workspace.id !== id));
+		// setWorkspace(workspaces.filter((workspace) => workspace.id !== id));
 	};
+
+	useEffect(() => {
+		loadWorkspace();
+	}, []);
 
 	return (
 		<>
@@ -43,7 +66,7 @@ const Workspaces = () => {
 				<div className="workspaces-list">
 					{workspaces.map((workspace) => (
 						<div>
-							<div key={workspace.id} className="workspaces-item">
+							<div key={workspace._id} className="workspaces-item">
 								<div>
 									<button
 										className="workspaces-delete-button"
