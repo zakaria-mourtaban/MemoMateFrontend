@@ -22,14 +22,14 @@ export const apiCall = async (method: string, url: string, data: any = null, req
         headers.Authorization = `Bearer ${token}`;
     }
 
-    return axios({ method, url, data, headers });
+    return axios({ method, url, data, headers, baseURL:"http://localhost:5000" });
 };
 
 export const login = async (email: string, password: string) => {
     try {
         const response = await apiCall(
             'POST',
-            '/api/auth/login',
+            'auth/login',
             { email, password },
             false
         );
@@ -42,12 +42,12 @@ export const login = async (email: string, password: string) => {
     }
 };
 
-export const signup = async (username: string, email: string, password: string) => {
+export const signup = async (name: string, email: string, password: string) => {
     try {
         const response = await apiCall(
             'POST',
-            '/api/auth/signup',
-            { username, email, password },
+            'auth/register',
+            { name, email, password },
             false
         );
         if (response.data.token) {
