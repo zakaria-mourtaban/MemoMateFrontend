@@ -2,17 +2,24 @@
 import React, { useState } from "react";
 import Navbar from "../core/components/navbar";
 import "./styles/workspaces.css";
-import { PlusIcon } from "lucide-react";
-
+import { apiCall } from "../core/utils/api";
+import Swal from "sweetalert2";
 const Workspaces = () => {
 	const [workspaces, setWorkspaces] = useState([]);
 
-	const addWorkspace = () => {
-		const newWorkspace = {
-			id: Date.now(),
-			name: `Workspace ${workspaces.length + 1}`,
-		};
-		setWorkspaces([...workspaces, newWorkspace]);
+	const addWorkspace = async () => {
+		await Swal.fire({
+			title: "Name the Workspace",
+			input: "text",
+			showCancelButton: true,
+			inputValidator: (value) => {
+				if (!value) {
+					return "You need to write something!";
+				}
+			},
+		}).then((e) => {
+			console.log(e);
+		});
 	};
 
 	const deleteWorkspace = (id) => {
@@ -23,6 +30,14 @@ const Workspaces = () => {
 		<>
 			<Navbar />
 			<div className="workspaces-container">
+				<div className="workspaces-create-workspace-div">
+					<button
+						className="workspaces-add-button"
+						onClick={addWorkspace}
+					>
+						<p>Add Workspace</p>
+					</button>
+				</div>
 				<div className="workspaces-list">
 					{workspaces.map((workspace) => (
 						<div>
@@ -41,12 +56,6 @@ const Workspaces = () => {
 							<span>{workspace.name}</span>
 						</div>
 					))}
-					<button
-						className="workspaces-add-button"
-						onClick={addWorkspace}
-					>
-						<PlusIcon />
-					</button>
 				</div>
 			</div>
 		</>

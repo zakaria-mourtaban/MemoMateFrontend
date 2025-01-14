@@ -8,6 +8,7 @@
     "@headlessui/react": "^2.2.0",
     "@mdxeditor/editor": "^3.20.0",
     "@reduxjs/toolkit": "^2.5.0",
+    "@types/micromodal": "^0.3.5",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/parser": "^8.18.2",
     "axios": "^1.7.9",
@@ -15,6 +16,7 @@
     "kbar": "^0.1.0-beta.45",
     "kmenu": "^2.0.0",
     "lucide-react": "^0.469.0",
+    "micromodal": "^0.4.10",
     "ninja-keys": "^1.2.2",
     "novel": "^0.5.0",
     "react": "^18.2.0",
@@ -25,7 +27,8 @@
     "react-router-dom": "^7.1.1",
     "react-scripts": "^5.0.1",
     "react-treeview": "^0.4.7",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "sweetalert2": "^11.15.10"
   },
   "scripts": {
     "start": "react-scripts start",
