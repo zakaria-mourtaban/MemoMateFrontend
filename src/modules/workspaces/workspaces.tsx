@@ -43,8 +43,9 @@ const Workspaces = () => {
 		});
 	};
 
-	const deleteWorkspace = (id) => {
-		// setWorkspace(workspaces.filter((workspace) => workspace.id !== id));
+	const deleteWorkspace = async (id) => {
+		await apiCall("PATCH", `api/workspace/${id}/delete`, {}, true)
+		loadWorkspace()
 	};
 
 	useEffect(() => {
@@ -71,7 +72,7 @@ const Workspaces = () => {
 									<button
 										className="workspaces-delete-button"
 										onClick={() =>
-											deleteWorkspace(workspace.id)
+											deleteWorkspace(workspace._id)
 										}
 									>
 										🗑️
