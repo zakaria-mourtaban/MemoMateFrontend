@@ -6,6 +6,7 @@ import ExcalidrawComponent from "./excalidraw/Excalidraw";
 import "./styles/style.css";
 import { ExcalidrawAPIProvider } from "../../context/excalidrawContext";
 import Swal from "sweetalert2";
+import { apiCall } from "modules/core/utils/api";
 
 export interface FileNode {
 	id: string;
@@ -120,9 +121,8 @@ const Note: React.FC = () => {
 			}
 		}).then((result) => {
 			if (result.isConfirmed) {
-				console.log('Diagram Details:', result.value);
-			} else if (result.isDismissed) {
-				console.log('Action cancelled');
+				// console.log('Diagram Details:', result.value);
+				apiCall("POST", "api/chat/diagram", {prompt: result.value}, true)
 			}
 		});
 	}
