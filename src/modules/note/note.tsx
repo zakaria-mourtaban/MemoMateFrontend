@@ -5,6 +5,7 @@ import TreeViewComponent from "./treeview";
 import ExcalidrawComponent from "./excalidraw/Excalidraw";
 import "./styles/style.css";
 import { ExcalidrawAPIProvider } from "../../context/excalidrawContext";
+import Swal from "sweetalert2";
 
 export interface FileNode {
 	id: string;
@@ -100,6 +101,31 @@ const Note: React.FC = () => {
 			children: [],
 		},
 	];
+
+	const createDiagram = () => {
+		Swal.fire({
+			title: 'Create Diagram',
+			input: 'textarea',
+			inputPlaceholder: 'Enter diagram details here...',
+			showCancelButton: true,
+			confirmButtonText: 'Create',
+			cancelButtonText: 'Cancel',
+			inputAttributes: {
+				style: 'height: 100px; font-size: 16px;'
+			},
+			inputValidator: (value) => {
+				if (!value) {
+					return 'Please enter diagram details!';
+				}
+			}
+		}).then((result) => {
+			if (result.isConfirmed) {
+				console.log('Diagram Details:', result.value);
+			} else if (result.isDismissed) {
+				console.log('Action cancelled');
+			}
+		});
+	}
 
 	const indexCaller = (index) =>
 	{
