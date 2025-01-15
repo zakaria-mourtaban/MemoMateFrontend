@@ -11,23 +11,29 @@ import Chats from "./modules/chats/chats";
 import Workspaces from "./modules/workspaces/workspaces";
 import Config from "./modules/config/config";
 import Admin from "./modules/admin/admin";
+import { ExcalidrawAPIProvider } from "./context/excalidrawContext";
 
 function App() {
 	return (
 		<BrowserRouter>
-			<Provider store={store}>
-				<div className="App">
-					<Routes>
-						<Route path="/" element={<Signup />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/notes" element={<Notes />} />
-						<Route path="/chats" element={<Chats />} />
-						<Route path="/workspaces" element={<Workspaces />} />
-						<Route path="/preferences" element={<Config />} />
-						<Route path="/admin" element={<Admin />} />
-					</Routes>
-				</div>
-			</Provider>
+			<ExcalidrawAPIProvider>
+				<Provider store={store}>
+					<div className="App">
+						<Routes>
+							<Route path="/" element={<Signup />} />
+							<Route path="/login" element={<Login />} />
+							<Route path="/notes" element={<Notes />} />
+							<Route path="/chats" element={<Chats />} />
+							<Route
+								path="/workspaces"
+								element={<Workspaces />}
+							/>
+							<Route path="/preferences" element={<Config />} />
+							<Route path="/admin" element={<Admin />} />
+						</Routes>
+					</div>
+				</Provider>{" "}
+			</ExcalidrawAPIProvider>
 		</BrowserRouter>
 	);
 }

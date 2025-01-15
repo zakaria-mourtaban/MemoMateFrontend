@@ -4,9 +4,11 @@ import Navbar from "../core/components/navbar";
 import TreeViewComponent from "./treeview";
 import ExcalidrawComponent from "./excalidraw/Excalidraw";
 import "./styles/style.css";
-import { ExcalidrawAPIProvider } from "../../context/excalidrawContext";
+import { ExcalidrawAPIProvider, useExcalidrawAPI } from "../../context/excalidrawContext";
 import Swal from "sweetalert2";
-import { apiCall } from "modules/core/utils/api";
+import { apiCall } from "../../modules/core/utils/api";
+import { convertToExcalidrawElements } from "@excalidraw/excalidraw";
+import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
 
 export interface FileNode {
 	id: string;
@@ -18,10 +20,9 @@ const Note: React.FC = () => {
 	const [isKmenuOpen, setIsKmenuOpen] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
 
-	const commands = [
-		"Create Diagram"
-	];
+	const commands = ["Create Diagram"];
 
 	const toggleKmenu = useCallback(() => {
 		setIsKmenuOpen((prev) => !prev);
@@ -33,7 +34,7 @@ const Note: React.FC = () => {
 	);
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.code === "KeyK" && (event.ctrlKey)) {
+			if (event.code === "KeyK" && event.ctrlKey) {
 				event.preventDefault();
 				toggleKmenu();
 			}
@@ -105,42 +106,57 @@ const Note: React.FC = () => {
 
 	const createDiagram = () => {
 		Swal.fire({
-			title: 'Create Diagram',
-			input: 'textarea',
-			inputPlaceholder: 'Enter diagram details here...',
+			title: "Create Diagram",
+			input: "textarea",
+			inputPlaceholder: "Enter diagram details here...",
 			showCancelButton: true,
-			confirmButtonText: 'Create',
-			cancelButtonText: 'Cancel',
+			confirmButtonText: "Create",
+			cancelButtonText: "Cancel",
 			inputAttributes: {
-				style: 'height: 100px; font-size: 16px;'
+				style: "height: 100px; font-size: 16px;",
 			},
 			inputValidator: (value) => {
 				if (!value) {
-					return 'Please enter diagram details!';
+					return "Please enter diagram details!";
 				}
-			}
+			},
 		}).then((result) => {
 			if (result.isConfirmed) {
 				// console.log('Diagram Details:', result.value);
-				apiCall("POST", "api/chat/diagram", {prompt: result.value}, true)
+				apiCall(
+					"POST",
+					"api/chat/diagram",
+					{ prompt: result.value },
+					true
+				).then((res) => {
+					(async () => {
+						const { elements } = await parseMermaidToExcalidraw(res.data.response);
+
+						const excalidrawelements =
+							convertToExcalidrawElements(elements);
+						let sceneelements =
+							await excalidrawAPI.getSceneElements();
+						sceneelements =
+							sceneelements.concat(excalidrawelements);
+						excalidrawAPI.updateScene({ elements: sceneelements });
+					})();
+				});
 			}
 		});
-	}
+	};
 
-	const indexCaller = (index) =>
-	{
+	const indexCaller = (index) => {
 		switch (index) {
 			case 0:
 				createDiagram();
 				break;
-		
+
 			default:
 				break;
 		}
-	}
+	};
 
 	return (
-		<ExcalidrawAPIProvider>
 			<div>
 				<Navbar />
 				<div className="main-content">
@@ -178,7 +194,7 @@ const Note: React.FC = () => {
 												setSelectedIndex(index)
 											}
 											onClick={() => {
-												indexCaller(index)
+												indexCaller(index);
 												toggleKmenu();
 											}}
 										>
@@ -195,8 +211,25 @@ const Note: React.FC = () => {
 					</div>
 				)}
 			</div>
-		</ExcalidrawAPIProvider>
 	);
 };
 
 export default Note;
+
+// async () => {
+// 	const { elements } =
+// 		await parseMermaidToExcalidraw(
+// 			`graph TD
+// 	A[Start] --> B{Is it working?}
+// 	B -->|Yes| C[Continue]
+// 	B -->|No| D[Fix it]
+// 	D --> B
+// `
+// 		);
+
+// 	const excalidrawelements =
+// 		convertToExcalidrawElements(elements);
+// 	let sceneelements = await excalidrawAPI.getSceneElements();
+// 	sceneelements = sceneelements.concat(excalidrawelements)
+// 	excalidrawAPI.updateScene({elements : sceneelements})
+// }

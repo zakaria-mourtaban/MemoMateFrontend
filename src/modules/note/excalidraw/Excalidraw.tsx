@@ -60,20 +60,3 @@ const ExcalidrawComponent = () => {
 
 export default ExcalidrawComponent;
 
-// async () => {
-// 	const { elements } =
-// 		await parseMermaidToExcalidraw(
-// 			`graph TD
-// 	A[Start] --> B{Is it working?}
-// 	B -->|Yes| C[Continue]
-// 	B -->|No| D[Fix it]
-// 	D --> B
-// `
-// 		);
-
-// 	const excalidrawelements =
-// 		convertToExcalidrawElements(elements);
-// 	let sceneelements = await excalidrawAPI.getSceneElements();
-// 	sceneelements = sceneelements.concat(excalidrawelements)
-// 	excalidrawAPI.updateScene({elements : sceneelements})
-// }
