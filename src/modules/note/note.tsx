@@ -18,13 +18,7 @@ const Note: React.FC = () => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 
 	const commands = [
-		"Open File",
-		"Create New Note",
-		"Search",
-		"Close Command Palette",
-		"Toggle Sidebar",
-		"Open Settings",
-		"Open Recent",
+		"Create Diagram"
 	];
 
 	const toggleKmenu = useCallback(() => {
@@ -107,6 +101,18 @@ const Note: React.FC = () => {
 		},
 	];
 
+	const indexCaller = (index) =>
+	{
+		switch (index) {
+			case 0:
+				createDiagram();
+				break;
+		
+			default:
+				break;
+		}
+	}
+
 	return (
 		<ExcalidrawAPIProvider>
 			<div>
@@ -146,9 +152,7 @@ const Note: React.FC = () => {
 												setSelectedIndex(index)
 											}
 											onClick={() => {
-												alert(
-													`Command executed: ${cmd}`
-												);
+												indexCaller(index)
 												toggleKmenu();
 											}}
 										>
