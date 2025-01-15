@@ -1,5 +1,17 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
+const ExcalidrawSlice = createSlice({
+	name: "Excalidraw",
+	initialState: {
+		excalidrawAPI: null,
+	},
+	reducers: {
+		setExcalidrawApi: (state, action) => {
+			state.excalidrawAPI = action.payload;
+		},
+	},
+});
+
 const treeViewSlice = createSlice({
 	name: "treeView",
 	initialState: {
@@ -16,15 +28,15 @@ const workspaceApiSlice = createSlice({
 	name: "workspaceApi",
 	initialState: {
 		workspaces: [],
-		current: null
+		current: null,
 	},
 	reducers: {
 		setWorkspace: (state, action) => {
-			state.workspaces = action.payload
+			state.workspaces = action.payload;
 		},
 		setCurrent: (state, action) => {
-			state.current = action.payload
-		}
+			state.current = action.payload;
+		},
 	},
 });
 
@@ -36,6 +48,7 @@ const store = configureStore({
 	reducer: {
 		treeView: treeViewSlice.reducer,
 		workspaceApi: workspaceApiSlice.reducer,
+		excalidraw: ExcalidrawSlice.reducer
 	},
 });
 

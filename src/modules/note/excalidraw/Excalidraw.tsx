@@ -6,9 +6,11 @@ import {
 } from "@excalidraw/excalidraw";
 import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
 import "../styles/excalidraw.css";
+import { useSelector } from "react-redux";
+import { RootState } from "store/store";
 
 const ExcalidrawComponent = () => {
-	const [excalidrawAPI, setExcalidrawAPI] = useState(null);
+	const excalidrawAPI = useSelector((state : RootState)=> {state.})
 
 	return (
 		<div
