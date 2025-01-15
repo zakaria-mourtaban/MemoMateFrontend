@@ -17,16 +17,21 @@ const workspaceApiSlice = createSlice({
 	name: "workspaceApi",
 	initialState: {
 		workspaces: [],
+		current: null
 	},
 	reducers: {
 		setWorkspace: (state, action) => {
 			state.workspaces = action.payload
 		},
+		setCurrent: (state, action) => {
+			state.current = action.payload
+		}
 	},
 });
 
 export const { setCollapsed } = treeViewSlice.actions;
 export const { setWorkspace } = workspaceApiSlice.actions;
+export const { setCurrent } = workspaceApiSlice.actions;
 
 const store = configureStore({
 	reducer: {

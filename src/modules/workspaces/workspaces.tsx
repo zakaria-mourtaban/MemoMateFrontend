@@ -5,13 +5,15 @@ import "./styles/workspaces.css";
 import { apiCall } from "../core/utils/api";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setWorkspace } from "../../store/store";
+import { RootState, setCurrent, setWorkspace } from "../../store/store";
+import { useNavigate } from "react-router-dom";
 const Workspaces = () => {
 	// const [workspaces, setWorkspaces] = useState([]);
 	const workspaces = useSelector(
 		(state: RootState) => state.workspaceApi.workspaces
 	);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const loadWorkspace = async () => {
 		const data = await apiCall("GET", "api/workspace", {}, true).then(
@@ -48,6 +50,12 @@ const Workspaces = () => {
 		loadWorkspace()
 	};
 
+	const navigateToNote = async (workspace) => 
+	{
+		dispatch(setCurrent(workspace))
+		navigate("/notes")
+	}
+
 	useEffect(() => {
 		loadWorkspace();
 	}, []);
@@ -66,7 +74,9 @@ const Workspaces = () => {
 				</div>
 				<div className="workspaces-list">
 					{workspaces.map((workspace) => (
-						<div>
+						<div onClick={() => {
+							navigateToNote(workspace)
+						}}>
 							<div key={workspace._id} className="workspaces-item">
 								<div>
 									<button
