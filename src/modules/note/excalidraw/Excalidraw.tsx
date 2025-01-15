@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
 	convertToExcalidrawElements,
 	Excalidraw,
@@ -6,9 +6,10 @@ import {
 } from "@excalidraw/excalidraw";
 import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
 import "../styles/excalidraw.css";
+import { useExcalidrawAPI } from "../../../context/excalidrawContext";
 
 const ExcalidrawComponent = () => {
-	const [excalidrawAPI, setExcalidrawAPI] = useState(null);
+	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI()
 
 	return (
 		<div
@@ -78,9 +79,3 @@ const ExcalidrawComponent = () => {
 };
 
 export default ExcalidrawComponent;
-function parseMermaid(
-	diagramDefinition: any,
-	arg1: { fontSize: number }
-): { elements: any; files: any } | PromiseLike<{ elements: any; files: any }> {
-	throw new Error("Function not implemented.");
-}

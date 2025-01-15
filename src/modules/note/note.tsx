@@ -4,6 +4,7 @@ import Navbar from "../core/components/navbar";
 import TreeViewComponent from "./treeview";
 import ExcalidrawComponent from "./excalidraw/Excalidraw";
 import "./styles/style.css";
+import { ExcalidrawAPIProvider } from "../../context/excalidrawContext";
 
 export interface FileNode {
 	id: string;
@@ -108,65 +109,69 @@ const Note: React.FC = () => {
 	];
 
 	return (
-		<div>
-			<Navbar />
-			<div className="main-content">
-				<div className="treeview">
-					<TreeViewComponent data={treeData} />
-				</div>
-				<div className="content-area">
-					<ExcalidrawComponent />
-				</div>
-			</div>
-
-			{/* Kmenu Section */}
-			{isKmenuOpen && (
-				<div className="kmenu-overlay">
-					<div
-						className="kmenu"
-						onScroll={(e) => {
-							e.stopPropagation();
-						}}
-					>
-						<input
-							type="text"
-							placeholder="Type a command..."
-							className="kmenu-input"
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-							autoFocus
-						/>
-						<ul className="kmenu-list">
-							{filteredCommands.length > 0 ? (
-								filteredCommands.map((cmd, index) => (
-									<li
-										key={cmd}
-										className={`kmenu-item ${
-											index === selectedIndex
-												? "kmenu-item-selected"
-												: ""
-										}`}
-										onMouseEnter={() =>
-											setSelectedIndex(index)
-										}
-										onClick={() => {
-											alert(`Command executed: ${cmd}`);
-											toggleKmenu();
-										}}
-									>
-										{cmd}
-									</li>
-								))
-							) : (
-								<li className="kmenu-item kmenu-item-disabled">
-									No commands found
-								</li>
-							)}
-						</ul>
+		<ExcalidrawAPIProvider>
+			<div>
+				<Navbar />
+				<div className="main-content">
+					<div className="treeview">
+						<TreeViewComponent data={treeData} />
+					</div>
+					<div className="content-area">
+						<ExcalidrawComponent />
 					</div>
 				</div>
-			)}
-		</div>
+
+				{/* Kmenu Section */}
+				{isKmenuOpen && (
+					<div className="kmenu-overlay">
+						<div
+							className="kmenu"
+							onScroll={(e) => {
+								e.stopPropagation();
+							}}
+						>
+							<input
+								type="text"
+								placeholder="Type a command..."
+								className="kmenu-input"
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+								autoFocus
+							/>
+							<ul className="kmenu-list">
+								{filteredCommands.length > 0 ? (
+									filteredCommands.map((cmd, index) => (
+										<li
+											key={cmd}
+											className={`kmenu-item ${
+												index === selectedIndex
+													? "kmenu-item-selected"
+													: ""
+											}`}
+											onMouseEnter={() =>
+												setSelectedIndex(index)
+											}
+											onClick={() => {
+												alert(
+													`Command executed: ${cmd}`
+												);
+												toggleKmenu();
+											}}
+										>
+											{cmd}
+										</li>
+									))
+								) : (
+									<li className="kmenu-item kmenu-item-disabled">
+										No commands found
+									</li>
+								)}
+							</ul>
+						</div>
+					</div>
+				)}
+			</div>
+		</ExcalidrawAPIProvider>
 	);
 };
 
