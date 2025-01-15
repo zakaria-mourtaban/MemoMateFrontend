@@ -4,7 +4,10 @@ import Navbar from "../core/components/navbar";
 import TreeViewComponent from "./treeview";
 import ExcalidrawComponent from "./excalidraw/Excalidraw";
 import "./styles/style.css";
-import { ExcalidrawAPIProvider, useExcalidrawAPI } from "../../context/excalidrawContext";
+import {
+	ExcalidrawAPIProvider,
+	useExcalidrawAPI,
+} from "../../context/excalidrawContext";
 import Swal from "sweetalert2";
 import { apiCall } from "../../modules/core/utils/api";
 import { convertToExcalidrawElements } from "@excalidraw/excalidraw";
@@ -122,7 +125,6 @@ const Note: React.FC = () => {
 			},
 		}).then((result) => {
 			if (result.isConfirmed) {
-				// console.log('Diagram Details:', result.value);
 				apiCall(
 					"POST",
 					"api/chat/diagram",
@@ -130,15 +132,29 @@ const Note: React.FC = () => {
 					true
 				).then((res) => {
 					(async () => {
-						const { elements } = await parseMermaidToExcalidraw(res.data.response);
+						try {
+							console.log(
+								res.data.response.kwargs.content.toString()
+							);
+							const { elements } = await parseMermaidToExcalidraw(
+								res.data.response.kwargs.content.toString()
+							);
 
-						const excalidrawelements =
-							convertToExcalidrawElements(elements);
-						let sceneelements =
-							await excalidrawAPI.getSceneElements();
-						sceneelements =
-							sceneelements.concat(excalidrawelements);
-						excalidrawAPI.updateScene({ elements: sceneelements });
+							const excalidrawelements =
+								convertToExcalidrawElements(elements);
+							let sceneelements =
+								await excalidrawAPI.getSceneElements();
+							sceneelements =
+								sceneelements.concat(excalidrawelements);
+							excalidrawAPI.updateScene({
+								elements: sceneelements,
+							});
+						} catch (error) {
+							Swal.fire({
+								title: "An Error occured",
+								text: error,
+							});
+						}
 					})();
 				});
 			}
@@ -157,60 +173,60 @@ const Note: React.FC = () => {
 	};
 
 	return (
-			<div>
-				<Navbar />
-				<div className="main-content">
-					<div className="treeview">
-						<TreeViewComponent data={treeData} />
-					</div>
-					<div className="content-area">
-						<ExcalidrawComponent />
+		<div>
+			<Navbar />
+			<div className="main-content">
+				<div className="treeview">
+					<TreeViewComponent data={treeData} />
+				</div>
+				<div className="content-area">
+					<ExcalidrawComponent />
+				</div>
+			</div>
+
+			{/* Kmenu Section */}
+			{isKmenuOpen && (
+				<div className="kmenu-overlay">
+					<div className="kmenu">
+						<input
+							type="text"
+							placeholder="Type a command..."
+							className="kmenu-input"
+							value={searchQuery}
+							onChange={(e) => setSearchQuery(e.target.value)}
+							autoFocus
+						/>
+						<ul className="kmenu-list">
+							{filteredCommands.length > 0 ? (
+								filteredCommands.map((cmd, index) => (
+									<li
+										key={cmd}
+										className={`kmenu-item ${
+											index === selectedIndex
+												? "kmenu-item-selected"
+												: ""
+										}`}
+										onMouseEnter={() =>
+											setSelectedIndex(index)
+										}
+										onClick={() => {
+											indexCaller(index);
+											toggleKmenu();
+										}}
+									>
+										{cmd}
+									</li>
+								))
+							) : (
+								<li className="kmenu-item kmenu-item-disabled">
+									No commands found
+								</li>
+							)}
+						</ul>
 					</div>
 				</div>
-
-				{/* Kmenu Section */}
-				{isKmenuOpen && (
-					<div className="kmenu-overlay">
-						<div className="kmenu">
-							<input
-								type="text"
-								placeholder="Type a command..."
-								className="kmenu-input"
-								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
-								autoFocus
-							/>
-							<ul className="kmenu-list">
-								{filteredCommands.length > 0 ? (
-									filteredCommands.map((cmd, index) => (
-										<li
-											key={cmd}
-											className={`kmenu-item ${
-												index === selectedIndex
-													? "kmenu-item-selected"
-													: ""
-											}`}
-											onMouseEnter={() =>
-												setSelectedIndex(index)
-											}
-											onClick={() => {
-												indexCaller(index);
-												toggleKmenu();
-											}}
-										>
-											{cmd}
-										</li>
-									))
-								) : (
-									<li className="kmenu-item kmenu-item-disabled">
-										No commands found
-									</li>
-								)}
-							</ul>
-						</div>
-					</div>
-				)}
-			</div>
+			)}
+		</div>
 	);
 };
 
