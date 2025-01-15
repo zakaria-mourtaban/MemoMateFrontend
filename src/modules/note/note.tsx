@@ -1,5 +1,5 @@
 // src/Layout.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "../core/components/navbar";
 import TreeViewComponent from "./treeview";
 import ExcalidrawComponent from "./excalidraw/Excalidraw";
@@ -27,51 +27,50 @@ const Note: React.FC = () => {
 		"Open Recent",
 	];
 
-	const toggleKmenu = () => {
+	const toggleKmenu = useCallback(() => {
 		setIsKmenuOpen((prev) => !prev);
-		setSearchQuery(""); // Reset search query when toggling
-		setSelectedIndex(0); // Reset selection index
-	};
-
-	const handleKeyDown = (event: KeyboardEvent) => {
-		if (event.key === "k" && (event.ctrlKey || event.metaKey)) {
-			event.preventDefault();
-			toggleKmenu();
-		}
-
-		if (isKmenuOpen) {
-			if (event.key === "ArrowDown") {
+		setSearchQuery("");
+		setSelectedIndex(0);
+	}, []);
+	const filteredCommands = commands.filter((cmd) =>
+		cmd.toLowerCase().includes(searchQuery.toLowerCase())
+	);
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.code === "KeyK" && (event.ctrlKey)) {
 				event.preventDefault();
-				setSelectedIndex(
-					(prev) => (prev + 1) % filteredCommands.length
-				);
-			} else if (event.key === "ArrowUp") {
-				event.preventDefault();
-				setSelectedIndex(
-					(prev) =>
-						(prev - 1 + filteredCommands.length) %
-						filteredCommands.length
-				);
-			} else if (event.key === "Enter") {
-				event.preventDefault();
-				alert(`Command executed: ${filteredCommands[selectedIndex]}`);
-				toggleKmenu();
-			} else if (event.key === "Escape") {
 				toggleKmenu();
 			}
-		}
-	};
 
-	useEffect(() => {
+			if (isKmenuOpen) {
+				if (event.key === "ArrowDown") {
+					event.preventDefault();
+					setSelectedIndex(
+						(prev) => (prev + 1) % filteredCommands.length
+					);
+				} else if (event.key === "ArrowUp") {
+					event.preventDefault();
+					setSelectedIndex(
+						(prev) =>
+							(prev - 1 + filteredCommands.length) %
+							filteredCommands.length
+					);
+				} else if (event.key === "Enter") {
+					event.preventDefault();
+					alert(
+						`Command executed: ${filteredCommands[selectedIndex]}`
+					);
+					toggleKmenu();
+				} else if (event.key === "Escape") {
+					toggleKmenu();
+				}
+			}
+		};
 		window.addEventListener("keydown", handleKeyDown);
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown);
 		};
 	}, [isKmenuOpen, selectedIndex]);
-
-	const filteredCommands = commands.filter((cmd) =>
-		cmd.toLowerCase().includes(searchQuery.toLowerCase())
-	);
 
 	const treeData: FileNode[] = [
 		{
@@ -124,12 +123,7 @@ const Note: React.FC = () => {
 				{/* Kmenu Section */}
 				{isKmenuOpen && (
 					<div className="kmenu-overlay">
-						<div
-							className="kmenu"
-							onScroll={(e) => {
-								e.stopPropagation();
-							}}
-						>
+						<div className="kmenu">
 							<input
 								type="text"
 								placeholder="Type a command..."

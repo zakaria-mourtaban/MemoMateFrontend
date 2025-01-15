@@ -50,27 +50,7 @@ const ExcalidrawComponent = () => {
 						<MainMenu.DefaultItems.ToggleTheme></MainMenu.DefaultItems.ToggleTheme>
 						<MainMenu.DefaultItems.ChangeCanvasBackground></MainMenu.DefaultItems.ChangeCanvasBackground>
 						<MainMenu.DefaultItems.ClearCanvas></MainMenu.DefaultItems.ClearCanvas>
-						<button
-							onClick={async () => {
-								const { elements } =
-									await parseMermaidToExcalidraw(
-										`graph TD
-								A[Start] --> B{Is it working?}
-								B -->|Yes| C[Continue]
-								B -->|No| D[Fix it]
-								D --> B
-							`
-									);
 
-								const excalidrawelements =
-									convertToExcalidrawElements(elements);
-								let sceneelements = await excalidrawAPI.getSceneElements();
-								sceneelements = sceneelements.concat(excalidrawelements)
-								excalidrawAPI.updateScene({elements : sceneelements})
-							}}
-						>
-							tryme
-						</button>
 					</MainMenu>
 				</Excalidraw>
 			</div>
@@ -79,3 +59,21 @@ const ExcalidrawComponent = () => {
 };
 
 export default ExcalidrawComponent;
+
+// async () => {
+// 	const { elements } =
+// 		await parseMermaidToExcalidraw(
+// 			`graph TD
+// 	A[Start] --> B{Is it working?}
+// 	B -->|Yes| C[Continue]
+// 	B -->|No| D[Fix it]
+// 	D --> B
+// `
+// 		);
+
+// 	const excalidrawelements =
+// 		convertToExcalidrawElements(elements);
+// 	let sceneelements = await excalidrawAPI.getSceneElements();
+// 	sceneelements = sceneelements.concat(excalidrawelements)
+// 	excalidrawAPI.updateScene({elements : sceneelements})
+// }
