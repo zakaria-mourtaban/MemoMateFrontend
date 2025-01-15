@@ -41,11 +41,15 @@ const Note: React.FC = () => {
 		if (isKmenuOpen) {
 			if (event.key === "ArrowDown") {
 				event.preventDefault();
-				setSelectedIndex((prev) => (prev + 1) % filteredCommands.length);
+				setSelectedIndex(
+					(prev) => (prev + 1) % filteredCommands.length
+				);
 			} else if (event.key === "ArrowUp") {
 				event.preventDefault();
 				setSelectedIndex(
-					(prev) => (prev - 1 + filteredCommands.length) % filteredCommands.length
+					(prev) =>
+						(prev - 1 + filteredCommands.length) %
+						filteredCommands.length
 				);
 			} else if (event.key === "Enter") {
 				event.preventDefault();
@@ -118,7 +122,12 @@ const Note: React.FC = () => {
 			{/* Kmenu Section */}
 			{isKmenuOpen && (
 				<div className="kmenu-overlay">
-					<div className="kmenu">
+					<div
+						className="kmenu"
+						onScroll={(e) => {
+							e.stopPropagation();
+						}}
+					>
 						<input
 							type="text"
 							placeholder="Type a command..."
@@ -133,9 +142,13 @@ const Note: React.FC = () => {
 									<li
 										key={cmd}
 										className={`kmenu-item ${
-											index === selectedIndex ? "kmenu-item-selected" : ""
+											index === selectedIndex
+												? "kmenu-item-selected"
+												: ""
 										}`}
-										onMouseEnter={() => setSelectedIndex(index)}
+										onMouseEnter={() =>
+											setSelectedIndex(index)
+										}
 										onClick={() => {
 											alert(`Command executed: ${cmd}`);
 											toggleKmenu();

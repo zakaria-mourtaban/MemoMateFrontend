@@ -1,5 +1,4 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { act } from "react";
 
 const treeViewSlice = createSlice({
 	name: "treeView",

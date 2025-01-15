@@ -1,5 +1,5 @@
 // Workspaces.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../core/components/navbar";
 import "./styles/workspaces.css";
 import { apiCall } from "../core/utils/api";
