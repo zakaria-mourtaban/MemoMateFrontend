@@ -1,17 +1,17 @@
-// FileTreeView.tsx
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Tree, TreeApi } from "react-arborist";
 import Node from "./node";
-
 import "./styles/treeview.css";
 import {
 	ChevronsDownUp,
 	ChevronsUpDown,
 	FilePlus2,
 	FolderPlus,
+	Upload,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, setCollapsed } from "../../store/store";
+import axios from "axios";
 
 interface FileNode {
 	id: string;
@@ -19,7 +19,6 @@ interface FileNode {
 	children?: FileNode[];
 }
 
-// Define props interface for the component
 interface FileTreeViewProps {
 	data: FileNode[];
 }
@@ -30,28 +29,60 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 		(state: RootState) => state.treeView.collapsed
 	);
 	const dispatch = useDispatch();
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
 	Node.displayName = "Node";
+
 	const alterAll = (): void => {
 		if (collapsed === false) treeRef.current.closeAll();
 		else treeRef.current.openAll();
 		dispatch(setCollapsed(!collapsed));
 	};
+
+	const handleFileUpload = async () => {
+		if (!selectedFile) return;
+
+		const formData = new FormData();
+		formData.append("file", selectedFile);
+
+		try {
+			const response = await axios.post(
+				"/api/workspace/:id/add",
+				formData,
+				{
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			);
+
+			if (response.status === 200) {
+				console.log("File uploaded successfully");
+			}
+		} catch (error) {
+			console.error("Error uploading file:", error);
+		}
+	};
+
 	return (
 		<div className="file-tree-container">
-				<div className="file-actions">
-					<button>
-						<FilePlus2 size={25} />
-					</button>
-					<button>
-						<FolderPlus size={25} />
-					</button>
-					<button onClick={alterAll}>
-						{collapsed ? (
-							<ChevronsUpDown size={25} />
-						) : (
-							<ChevronsDownUp size={25} />
-						)}
-					</button>
+			<div className="file-actions">
+				<button>
+					<FilePlus2 size={25} />
+				</button>
+				<button>
+					<FolderPlus size={25} />
+				</button>
+				<button onClick={alterAll}>
+					{collapsed ? (
+						<ChevronsUpDown size={25} />
+					) : (
+						<ChevronsDownUp size={25} />
+					)}
+				</button>
+				<button onClick={handleFileUpload}>
+					<Upload />
+				</button>
 			</div>
 			<div className="tree-content">
 				<Tree<FileNode>

@@ -133,17 +133,16 @@ const Note: React.FC = () => {
 				).then((res) => {
 					(async () => {
 						try {
-							const { elements, files } =
-								await parseMermaidToExcalidraw(
-									res.data.response.kwargs.content.toString()
-								);
+							const { elements , files} = await parseMermaidToExcalidraw(
+								res.data.response.kwargs.content.toString()
+							);
 
 							const excalidrawelements =
 								convertToExcalidrawElements(elements);
-							if (files) {
-								excalidrawAPI.addFiles(Object.values(files));
-							}
-							console.log(excalidrawelements);
+							    if (files) {
+									excalidrawAPI.addFiles(Object.values(files));
+								  }
+							console.log(excalidrawelements)
 							let sceneelements =
 								await excalidrawAPI.getSceneElements();
 							sceneelements =
@@ -175,7 +174,7 @@ const Note: React.FC = () => {
 	};
 
 	return (
-		<div>
+		<div className="note-container">
 			<Navbar />
 			<div className="main-content">
 				<div className="treeview">

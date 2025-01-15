@@ -2,6 +2,11 @@
 	display: flex;
 }
 
+.note-container
+{
+	max-height: 100px;
+}
+
 .content-area {
 	flex: 4;
 	margin: 1%;

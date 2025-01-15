@@ -9,12 +9,12 @@ import "../styles/excalidraw.css";
 import { useExcalidrawAPI } from "../../../context/excalidrawContext";
 
 const ExcalidrawComponent = () => {
-	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI()
+	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
 
 	return (
 		<div
 			style={{
-				height: "100vh",
+				height: "80vh",
 				display: "flex",
 				flexDirection: "column",
 			}}
@@ -50,7 +50,6 @@ const ExcalidrawComponent = () => {
 						<MainMenu.DefaultItems.ToggleTheme></MainMenu.DefaultItems.ToggleTheme>
 						<MainMenu.DefaultItems.ChangeCanvasBackground></MainMenu.DefaultItems.ChangeCanvasBackground>
 						<MainMenu.DefaultItems.ClearCanvas></MainMenu.DefaultItems.ClearCanvas>
-
 					</MainMenu>
 				</Excalidraw>
 			</div>
@@ -59,4 +58,3 @@ const ExcalidrawComponent = () => {
 };
 
 export default ExcalidrawComponent;
-
