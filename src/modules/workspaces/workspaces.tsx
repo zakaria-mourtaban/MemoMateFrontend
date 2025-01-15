@@ -21,7 +21,7 @@ const Workspaces = () => {
 				return res.data;
 			}
 		);
-		dispatch(setWorkspace(data.workspaces))
+		dispatch(setWorkspace(data.workspaces));
 		console.log(workspaces);
 	};
 
@@ -46,15 +46,14 @@ const Workspaces = () => {
 	};
 
 	const deleteWorkspace = async (id) => {
-		await apiCall("PATCH", `api/workspace/${id}/delete`, {}, true)
-		loadWorkspace()
+		await apiCall("PATCH", `api/workspace/${id}/delete`, {}, true);
+		loadWorkspace();
 	};
 
-	const navigateToNote = async (workspace) => 
-	{
-		dispatch(setCurrent(workspace))
-		navigate("/notes")
-	}
+	const navigateToNote = async (workspace) => {
+		dispatch(setCurrent(workspace));
+		navigate("/notes");
+	};
 
 	useEffect(() => {
 		loadWorkspace();
@@ -74,16 +73,22 @@ const Workspaces = () => {
 				</div>
 				<div className="workspaces-list">
 					{workspaces.map((workspace) => (
-						<div onClick={() => {
-							navigateToNote(workspace)
-						}}>
-							<div key={workspace._id} className="workspaces-item">
+						<div
+							onClick={() => {
+								navigateToNote(workspace);
+							}}
+						>
+							<div
+								key={workspace._id}
+								className="workspaces-item"
+							>
 								<div>
 									<button
 										className="workspaces-delete-button"
-										onClick={() =>
-											deleteWorkspace(workspace._id)
-										}
+										onClick={(e) => {
+											e.stopPropagation();
+											deleteWorkspace(workspace._id);
+										}}
 									>
 										🗑️
 									</button>
