@@ -1,8 +1,15 @@
-import React from "react";
-import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
+import React, { useState } from "react";
+import {
+	convertToExcalidrawElements,
+	Excalidraw,
+	MainMenu,
+} from "@excalidraw/excalidraw";
+import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
 import "../styles/excalidraw.css";
 
 const ExcalidrawComponent = () => {
+	const [excalidrawAPI, setExcalidrawAPI] = useState(null);
+
 	return (
 		<div
 			style={{
@@ -13,6 +20,7 @@ const ExcalidrawComponent = () => {
 		>
 			<div style={{ flex: 1 }}>
 				<Excalidraw
+					excalidrawAPI={(api) => setExcalidrawAPI(api)}
 					validateEmbeddable={() => true}
 					initialData={{
 						elements: [],
@@ -22,7 +30,7 @@ const ExcalidrawComponent = () => {
 						},
 					}}
 					name="Excalidraw Canvas"
-					handleKeyboardGlobally={false}
+					handleKeyboardGlobally={true}
 					UIOptions={{
 						canvasActions: {
 							loadScene: true,
@@ -41,6 +49,27 @@ const ExcalidrawComponent = () => {
 						<MainMenu.DefaultItems.ToggleTheme></MainMenu.DefaultItems.ToggleTheme>
 						<MainMenu.DefaultItems.ChangeCanvasBackground></MainMenu.DefaultItems.ChangeCanvasBackground>
 						<MainMenu.DefaultItems.ClearCanvas></MainMenu.DefaultItems.ClearCanvas>
+						<button
+							onClick={async () => {
+								const { elements } =
+									await parseMermaidToExcalidraw(
+										`graph TD
+								A[Start] --> B{Is it working?}
+								B -->|Yes| C[Continue]
+								B -->|No| D[Fix it]
+								D --> B
+							`
+									);
+
+								const excalidrawelements =
+									convertToExcalidrawElements(elements);
+								let sceneelements = await excalidrawAPI.getSceneElements();
+								sceneelements = sceneelements.concat(excalidrawelements)
+								excalidrawAPI.updateScene({elements : sceneelements})
+							}}
+						>
+							tryme
+						</button>
 					</MainMenu>
 				</Excalidraw>
 			</div>
@@ -49,3 +78,9 @@ const ExcalidrawComponent = () => {
 };
 
 export default ExcalidrawComponent;
+function parseMermaid(
+	diagramDefinition: any,
+	arg1: { fontSize: number }
+): { elements: any; files: any } | PromiseLike<{ elements: any; files: any }> {
+	throw new Error("Function not implemented.");
+}

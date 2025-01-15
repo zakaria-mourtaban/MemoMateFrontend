@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@excalidraw/excalidraw": "^0.17.6",
+    "@excalidraw/mermaid-to-excalidraw": "^1.1.2",
     "@fontsource/poppins": "^5.1.1",
     "@headlessui/react": "^2.2.0",
     "@mdxeditor/editor": "^3.20.0",
