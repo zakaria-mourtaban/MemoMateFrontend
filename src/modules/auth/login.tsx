@@ -103,7 +103,7 @@ const Login = () => {
                             <div>Don't have an account? </div>
                             <div 
                                 className="redirect-link"
-                                onClick={() => navigate("/signup")}
+                                onClick={() => navigate("/")}
                             >
                                 Sign Up
                             </div>
