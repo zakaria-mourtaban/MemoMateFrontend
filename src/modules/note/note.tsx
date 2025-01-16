@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 import { apiCall } from "../../modules/core/utils/api";
 import { convertToExcalidrawElements } from "@excalidraw/excalidraw";
 import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "store/store";
 
 export interface FileNode {
 	id: string;
@@ -24,9 +27,32 @@ const Note: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
-
+	const current = useSelector(
+		(state: RootState) => state.workspaceApi.current
+	);
+	const [treeData, setTreeData] = useState([]);
+	const navigate = useNavigate();
 	const commands = ["Create Diagram"];
 
+	useEffect(() => {
+		!current && navigate("/workspaces");
+		current._id && apiCall("GET", "api/workspace/" + current._id, {}, true).then((res) => {
+			let data = res.data.workspace.files;
+			// [{id:"sadsad",name:"sadsadsa",children:null}]
+			setTreeData(
+				data.map((e) => {
+					return {
+						id: e._id,
+						name: e.name,
+						children: e.children,
+					};
+				})
+			);
+		});
+		// treeData.push(current)
+	}, []);
+
+	console.log(treeData);
 	const toggleKmenu = useCallback(() => {
 		setIsKmenuOpen((prev) => !prev);
 		setSearchQuery("");
@@ -72,41 +98,6 @@ const Note: React.FC = () => {
 		};
 	}, [isKmenuOpen, selectedIndex]);
 
-	const treeData: FileNode[] = [
-		{
-			id: "test2",
-			name: "test",
-			children: [
-				{
-					id: "test3",
-					name: "test",
-				},
-				{
-					id: "test4",
-					name: "tedsfsdfsdst",
-					children: [
-						{
-							id: "test5",
-							name: "tesdsfsdfsdft",
-							children: [
-								{
-									id: "test6",
-									name: "tessdsdffsdft",
-									children: [],
-								},
-							],
-						},
-					],
-				},
-			],
-		},
-		{
-			id: "test1",
-			name: "testing",
-			children: [],
-		},
-	];
-
 	const createDiagram = () => {
 		Swal.fire({
 			title: "Create Diagram",
@@ -133,16 +124,17 @@ const Note: React.FC = () => {
 				).then((res) => {
 					(async () => {
 						try {
-							const { elements , files} = await parseMermaidToExcalidraw(
-								res.data.response.kwargs.content.toString()
-							);
+							const { elements, files } =
+								await parseMermaidToExcalidraw(
+									res.data.response.kwargs.content.toString()
+								);
 
 							const excalidrawelements =
 								convertToExcalidrawElements(elements);
-							    if (files) {
-									excalidrawAPI.addFiles(Object.values(files));
-								  }
-							console.log(excalidrawelements)
+							if (files) {
+								excalidrawAPI.addFiles(Object.values(files));
+							}
+							console.log(excalidrawelements);
 							let sceneelements =
 								await excalidrawAPI.getSceneElements();
 							sceneelements =

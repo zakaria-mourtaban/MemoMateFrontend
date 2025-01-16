@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, setCurrent, setWorkspace } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 const Workspaces = () => {
-	// const [workspaces, setWorkspaces] = useState([]);
 	const workspaces = useSelector(
 		(state: RootState) => state.workspaceApi.workspaces
 	);
@@ -79,7 +78,7 @@ const Workspaces = () => {
 							}}
 						>
 							<div
-								key={workspace._id}
+								key={workspace?._id}
 								className="workspaces-item"
 							>
 								<div>
@@ -87,7 +86,7 @@ const Workspaces = () => {
 										className="workspaces-delete-button"
 										onClick={(e) => {
 											e.stopPropagation();
-											deleteWorkspace(workspace._id);
+											deleteWorkspace(workspace?._id);
 										}}
 									>
 										🗑️

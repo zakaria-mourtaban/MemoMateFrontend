@@ -87,7 +87,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 			<div className="tree-content">
 				<Tree<FileNode>
 					ref={treeRef}
-					initialData={data}
+					data={data}
 					openByDefault={false}
 					width="100%"
 					height={400}
