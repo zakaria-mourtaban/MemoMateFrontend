@@ -17,14 +17,14 @@ const treeViewSlice = createSlice({
 	name: "treeView",
 	initialState: {
 		collapsed: false,
-		currentnode: null
+		currentNode: null
 	},
 	reducers: {
 		setCollapsed: (state, action) => {
 			state.collapsed = action.payload;
 		},
 		setCurrentNode: (state, action) => {
-			state.currentnode = action.payload
+			state.currentNode = action.payload
 		}
 	},
 });

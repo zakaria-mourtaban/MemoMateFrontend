@@ -10,7 +10,7 @@ import {
 	Upload,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setCollapsed } from "../../store/store";
+import { RootState, setCollapsed, setCurrentNode } from "../../store/store";
 import axios from "axios";
 
 interface FileNode {
@@ -24,12 +24,15 @@ interface FileTreeViewProps {
 }
 
 const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const treeRef = useRef<TreeApi<FileNode>>(null);
 	const collapsed = useSelector(
 		(state: RootState) => state.treeView.collapsed
 	);
+	const currentNode = useSelector(
+		(state: RootState) => state.treeView.currentNode
+	);
 	const dispatch = useDispatch();
-	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
 	Node.displayName = "Node";
 
@@ -94,6 +97,9 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 					indent={24}
 					rowHeight={32}
 					padding={8}
+					onSelect={(node) => {
+						return dispatch(setCurrentNode(node));
+					}}
 				>
 					{Node}
 				</Tree>
