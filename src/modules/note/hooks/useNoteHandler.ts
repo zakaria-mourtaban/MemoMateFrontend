@@ -8,7 +8,7 @@ import { apiCall } from '../../core/utils/api';
 import Swal from 'sweetalert2';
 import { RootState } from 'store/store';
 
-export const useNoteHandlers = () => {
+export const useNoteHandler = () => {
   const [isKmenuOpen, setIsKmenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -99,9 +99,10 @@ export const useNoteHandlers = () => {
     }
   }, [createDiagram]);
 
-  // Keyboard event handlers
+	// Keyboard event handlers
+	let filteredCommands = []
   useEffect(() => {
-    const filteredCommands = commands.filter((cmd) =>
+    filteredCommands = commands.filter((cmd) =>
       cmd.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -143,6 +144,7 @@ export const useNoteHandlers = () => {
     setSearchQuery,
     setSelectedIndex,
     toggleKmenu,
-    indexCaller
+	  indexCaller,
+	filteredCommands
   };
 };

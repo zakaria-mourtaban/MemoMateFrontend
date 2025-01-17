@@ -15,6 +15,7 @@ import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "store/store";
+import { useNoteHandler } from "./hooks/useNoteHandler";
 
 export interface FileNode {
 	id: string;
@@ -153,16 +154,17 @@ const notehandler = () => {
 }
 
 const Note: React.FC = () => {
-	const [isKmenuOpen, setIsKmenuOpen] = useState(false);
-	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedIndex, setSelectedIndex] = useState(0);
-	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
-	const current = useSelector((state: RootState) => state.workspaceApi.current);
-	const [treeData, setTreeData] = useState([]);
-	const navigate = useNavigate();
-	const commands = ["Create Diagram"];
-
-	notehandler()
+	const {
+		isKmenuOpen,
+		searchQuery,
+		selectedIndex,
+		treeData,
+		commands,
+		setSearchQuery,
+		setSelectedIndex,
+		toggleKmenu,
+		indexCaller
+	  } = useNoteHandler();
 
 	return (
 		<div className="note-container">
