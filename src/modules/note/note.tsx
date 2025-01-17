@@ -24,6 +24,7 @@ const Note: React.FC = () => {
 		setSelectedIndex,
 		toggleKmenu,
 		indexCaller,
+		loadTree,
 	} = useNoteHandler();
 
 	return (
@@ -31,7 +32,7 @@ const Note: React.FC = () => {
 			<Navbar />
 			<div className="main-content">
 				<div className="treeview">
-					<TreeViewComponent data={treeData} />
+					<TreeViewComponent data={treeData} load={loadTree} />
 				</div>
 				<div className="content-area">
 					<ExcalidrawComponent />

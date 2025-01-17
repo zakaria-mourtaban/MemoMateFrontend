@@ -22,9 +22,10 @@ interface FileNode {
 
 interface FileTreeViewProps {
 	data: FileNode[];
+	load: any
 }
 
-const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
+const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 	const treeRef = useRef<TreeApi<FileNode>>(null);
 	const collapsed = useSelector(
 		(state: RootState) => state.treeView.collapsed
@@ -32,7 +33,9 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 	const currentNode = useSelector(
 		(state: RootState) => state.treeView.currentNode
 	);
-	const currentWorkspace = useSelector((state: RootState) => state.workspaceApi.current);
+	const currentWorkspace = useSelector(
+		(state: RootState) => state.workspaceApi.current
+	);
 	const dispatch = useDispatch();
 
 	Node.displayName = "Node";
@@ -62,7 +65,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 				};
 
 				fileInput.oncancel = () => {
-					reject(new Error("File selection cancelled"));
+					reject();
 				};
 			});
 
@@ -75,19 +78,18 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 			const token = getTokenFromCookie();
 			const response = await axios({
 				method: "POST",
-				url: `http://localhost:5000/api/workspace/${currentNode._id ? currentNode._id : currentWorkspace?._id}/add`,
+				url: `http://localhost:5000/api/workspace/${
+					currentNode.id ? currentNode.id : currentWorkspace?._id
+				}/add`,
 				data: formData,
 				headers: {
 					Authorization: `Bearer ${token}`,
 					// Don't set Content-Type, let axios set it automatically for FormData
 				},
 			});
-
+			load()
 			return response;
-		} catch (error) {
-			console.error("Error uploading file:", error);
-			throw error;
-		}
+		} catch{}
 	};
 
 	return (
@@ -121,7 +123,8 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 					rowHeight={32}
 					padding={8}
 					onSelect={(node) => {
-						return dispatch(setCurrentNode(node));
+						console.log(node[0]?.data)
+						dispatch(setCurrentNode(node[0]?.data));
 					}}
 				>
 					{Node}
