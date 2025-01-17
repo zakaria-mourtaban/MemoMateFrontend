@@ -1,4 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const ExcalidrawSlice = createSlice({
 	name: "Excalidraw",
@@ -16,11 +17,15 @@ const treeViewSlice = createSlice({
 	name: "treeView",
 	initialState: {
 		collapsed: false,
+		currentnode: null
 	},
 	reducers: {
 		setCollapsed: (state, action) => {
 			state.collapsed = action.payload;
 		},
+		setCurrentNode: (state, action) => {
+			state.currentnode = action.payload
+		}
 	},
 });
 
@@ -40,7 +45,7 @@ const workspaceApiSlice = createSlice({
 	},
 });
 
-export const { setCollapsed } = treeViewSlice.actions;
+export const { setCollapsed, setCurrentNode } = treeViewSlice.actions;
 export const { setWorkspace } = workspaceApiSlice.actions;
 export const { setCurrent } = workspaceApiSlice.actions;
 

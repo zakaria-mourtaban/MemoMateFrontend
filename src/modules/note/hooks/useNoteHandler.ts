@@ -141,10 +141,10 @@ export const useNoteHandler = () => {
     selectedIndex,
     treeData,
     commands,
+	filteredCommands,
     setSearchQuery,
     setSelectedIndex,
     toggleKmenu,
-	  indexCaller,
-	filteredCommands
+	indexCaller
   };
 };
