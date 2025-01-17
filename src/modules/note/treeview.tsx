@@ -3,24 +3,25 @@ import { Tree, TreeApi } from "react-arborist";
 import Node from "./node";
 import "./styles/treeview.css";
 import {
-	ChevronsDownUp,
-	ChevronsUpDown,
-	FilePlus2,
-	FolderPlus,
-	Upload,
+  ChevronsDownUp,
+  ChevronsUpDown,
+  FilePlus2,
+  FolderPlus,
+  Upload,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, setCollapsed, setCurrentNode } from "../../store/store";
 import axios from "axios";
+import { apiCall, getTokenFromCookie } from "../core/utils/api";
 
 interface FileNode {
-	id: string;
-	name: string;
-	children?: FileNode[];
+  id: string;
+  name: string;
+  children?: FileNode[];
 }
 
 interface FileTreeViewProps {
-	data: FileNode[];
+  data: FileNode[];
 }
 
 const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
@@ -36,11 +37,11 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data }) => {
 
 	Node.displayName = "Node";
 
-	const alterAll = (): void => {
-		if (collapsed === false) treeRef.current.closeAll();
-		else treeRef.current.openAll();
-		dispatch(setCollapsed(!collapsed));
-	};
+  const alterAll = (): void => {
+    if (collapsed === false) treeRef.current.closeAll();
+    else treeRef.current.openAll();
+    dispatch(setCollapsed(!collapsed));
+  };
 
 	const handleFileUpload = async () => {
 		if (!selectedFile) return;
