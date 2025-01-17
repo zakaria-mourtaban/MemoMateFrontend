@@ -76,9 +76,9 @@ const Workspaces = () => {
 							onClick={() => {
 								navigateToNote(workspace);
 							}}
+							key={workspace?._id}
 						>
 							<div
-								key={workspace?._id}
 								className="workspaces-item"
 							>
 								<div>

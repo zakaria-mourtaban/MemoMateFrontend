@@ -21,23 +21,20 @@ export const useNoteHandler = () => {
 	);
 
 	const commands = ["Create Diagram"];
-	console.log(treeData)
-
-	const recursiveRename = (e) => {
-		return {
+	console.log(treeData);
+	const recursiveRename = (data) => {
+		if (!data) { return null }
+		console.log(data)
+		return data.map((e) => ({
 			id: e._id,
 			name: e.name,
-			children: e.files ? recursiveRename(e) : null
-		}
-	}
-
+			children: e.children ? recursiveRename(e.children) : null,
+		}));
+	};
 
 	const loadTree = () => {
 		apiCall("GET", `api/workspace/${current._id}`, {}, true).then((res) => {
-			const data = res.data.workspace.files;
-			setTreeData(
-				recursiveRename(data)
-			);
+			setTreeData(recursiveRename(res.data?.workspace?.children));
 		});
 	};
 
