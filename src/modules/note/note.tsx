@@ -22,23 +22,11 @@ export interface FileNode {
 	children?: FileNode[];
 }
 
-const Note: React.FC = () => {
-	const [isKmenuOpen, setIsKmenuOpen] = useState(false);
-	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedIndex, setSelectedIndex] = useState(0);
-	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
-	const current = useSelector(
-		(state: RootState) => state.workspaceApi.current
-	);
-	const [treeData, setTreeData] = useState([]);
-	const navigate = useNavigate();
-	const commands = ["Create Diagram"];
-
+const notehandler = () => {
 	useEffect(() => {
 		!current && navigate("/workspaces");
 		current._id && apiCall("GET", "api/workspace/" + current._id, {}, true).then((res) => {
 			let data = res.data.workspace.files;
-			// [{id:"sadsad",name:"sadsadsa",children:null}]
 			setTreeData(
 				data.map((e) => {
 					return {
@@ -49,10 +37,8 @@ const Note: React.FC = () => {
 				})
 			);
 		});
-		// treeData.push(current)
 	}, []);
 
-	console.log(treeData);
 	const toggleKmenu = useCallback(() => {
 		setIsKmenuOpen((prev) => !prev);
 		setSearchQuery("");
@@ -164,6 +150,19 @@ const Note: React.FC = () => {
 				break;
 		}
 	};
+}
+
+const Note: React.FC = () => {
+	const [isKmenuOpen, setIsKmenuOpen] = useState(false);
+	const [searchQuery, setSearchQuery] = useState("");
+	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
+	const current = useSelector((state: RootState) => state.workspaceApi.current);
+	const [treeData, setTreeData] = useState([]);
+	const navigate = useNavigate();
+	const commands = ["Create Diagram"];
+
+	notehandler()
 
 	return (
 		<div className="note-container">
