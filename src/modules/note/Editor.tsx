@@ -6,4 +6,3 @@ import {
 	headingsPlugin,
 	imagePlugin,
 	linkDialogPlugin,
-	linkPlugin,
