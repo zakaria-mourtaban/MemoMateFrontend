@@ -50,6 +50,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 	};
 
 	const handleDelete = async () => {
+		console.log(currentNode)
 		if (!currentNode) return;
 		await apiCall(
 			"PATCH",
@@ -124,7 +125,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 				<button onClick={handleFileUpload}>
 					<Upload size={20} />
 				</button>
-				<button onClick={handleFileUpload}>
+				<button onClick={handleDelete}>
 					<Trash size={20} />
 				</button>
 			</div>
@@ -138,7 +139,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 					indent={24}
 					rowHeight={32}
 					padding={8}
-					onFocus={(node) => {
+					onSelect={(node) => {
 						dispatch(setCurrentNode(node[0]?.data));
 					}}
 				>
