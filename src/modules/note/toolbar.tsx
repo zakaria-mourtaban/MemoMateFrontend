@@ -13,8 +13,5 @@ import {
 	ListsToggle,
 } from "@mdxeditor/editor";
 
-const toolbar = () => {
-
-};
 
 export default toolbar
