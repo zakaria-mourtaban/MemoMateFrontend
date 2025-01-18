@@ -14,4 +14,3 @@
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
-				<path
