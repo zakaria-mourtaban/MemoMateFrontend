@@ -3,4 +3,3 @@ import {
 	codeBlockPlugin,
 	codeMirrorPlugin,
 	directivesPlugin,
-	headingsPlugin,
