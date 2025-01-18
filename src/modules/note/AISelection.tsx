@@ -1,4 +1,3 @@
-				} else {
 					console.log("No text selection found.");
 				}
 			});
