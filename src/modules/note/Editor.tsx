@@ -42,5 +42,4 @@ const Editor = () => {
 				tablePlugin(),
 				thematicBreakPlugin(),
 				linkDialogPlugin(),
-				headingsPlugin(),
 				listsPlugin(),
