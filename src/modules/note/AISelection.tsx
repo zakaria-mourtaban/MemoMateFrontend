@@ -60,4 +60,3 @@
 							width="6.25"
 							height="6.25"
 							fill="white"
-							transform="translate(16.5 14.875)"
