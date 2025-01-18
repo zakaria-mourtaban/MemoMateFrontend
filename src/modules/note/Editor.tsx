@@ -8,4 +8,3 @@ import {
 	linkDialogPlugin,
 	linkPlugin,
 	listsPlugin,
-	markdownShortcutPlugin,
