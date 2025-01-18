@@ -54,4 +54,3 @@
 							fill="white"
 							transform="translate(2.5625 3.375)"
 						/>
-					</clipPath>
