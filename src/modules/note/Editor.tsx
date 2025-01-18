@@ -15,6 +15,3 @@ import {
 	thematicBreakPlugin,
 } from "@mdxeditor/editor";
 import React from "react";
-import imageUploadHandler from "./utils/imageUploadHandler";
-import toolbar from "./toolbar";
-
