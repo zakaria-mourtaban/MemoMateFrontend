@@ -111,6 +111,8 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 
 	const handleFileAdd = async () => {
 		try {
+			if (currentNode?.id && !currentNode.children)
+				return
 			const jsonData = {
 				type: "excalidraw",
 				version: 2,
@@ -148,7 +150,6 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 
 			const token = getTokenFromCookie();
 
-			console.log(currentWorkspace);
 			const response = await axios.post(
 				`http://localhost:5000/api/workspace/${
 					currentNode?.id ? currentNode.id : currentWorkspace?._id
