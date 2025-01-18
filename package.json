@@ -8,7 +8,6 @@
     "@fontsource/poppins": "^5.1.1",
     "@headlessui/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.5.0",
-    "@types/micromodal": "^0.3.5",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/parser": "^8.18.2",
     "axios": "^1.7.9",
