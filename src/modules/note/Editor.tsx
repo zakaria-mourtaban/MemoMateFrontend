@@ -9,4 +9,3 @@ import {
 	linkPlugin,
 	listsPlugin,
 	markdownShortcutPlugin,
-	MDXEditor,
