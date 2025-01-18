@@ -6,4 +6,3 @@ import Editor from "./Editor";
 
 const Note = () => {
 	return (
-		<RealmProvider>
