@@ -48,4 +48,3 @@ const Editor = () => {
 				quotePlugin(),
 				markdownShortcutPlugin(),
 				directivesPlugin({
-					directiveDescriptors: [AdmonitionDirectiveDescriptor],
