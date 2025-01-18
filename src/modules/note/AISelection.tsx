@@ -1,4 +1,3 @@
-	const rootEditor = useCellValue(rootEditor$);
 
 	const getCurrentSelection = () => {
 		if (rootEditor) {
