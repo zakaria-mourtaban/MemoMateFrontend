@@ -23,4 +23,3 @@ const Editor = () => {
 		<MDXEditor
 			autoFocus
 			markdown="# Hello world
-			sadsadasd
