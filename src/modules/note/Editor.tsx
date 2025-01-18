@@ -36,4 +36,3 @@ const Editor = () => {
 						tsx: "React TSX",
 						json: "JSON",
 						diff: "Diff",
-						typescript: "Typescript",
