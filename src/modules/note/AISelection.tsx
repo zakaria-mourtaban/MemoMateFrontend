@@ -53,4 +53,3 @@
 							height="6.25"
 							fill="white"
 							transform="translate(2.5625 3.375)"
-						/>
