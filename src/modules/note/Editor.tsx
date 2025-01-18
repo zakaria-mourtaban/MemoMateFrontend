@@ -33,4 +33,3 @@ const Editor = () => {
 					codeBlockLanguages: {
 						js: "JavaScript",
 						ts: "Typescript",
-						tsx: "React TSX",
