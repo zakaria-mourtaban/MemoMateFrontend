@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Tree, TreeApi } from "react-arborist";
 import Node from "./node";
 import "./styles/treeview.css";
+import FormData from "form-data"
 import {
 	ChevronsDownUp,
 	ChevronsUpDown,
@@ -15,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, setCollapsed, setCurrentNode } from "../../store/store";
 import axios from "axios";
 import { apiCall, getTokenFromCookie } from "../core/utils/api";
+import fs from "fs"
+import Swal from "sweetalert2";
 
 interface FileNode {
 	id: string;
@@ -106,31 +109,67 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 		} catch {}
 	};
 
-	// const handleFileAdd = async () => {
-	// 	try {
-	// 		const formData = new FormData();
-
-	// 		// const file = await fileSelected;
-
-	// 		formData.append("file", file);
-	// 		formData.append("name", file.name);
-
-	// 		const token = getTokenFromCookie();
-	// 		const response = await axios({
-	// 			method: "POST",
-	// 			url: `http://localhost:5000/api/workspace/${
-	// 				currentNode.id ? currentNode.id : currentWorkspace?._id
-	// 			}/add`,
-	// 			data: formData,
-	// 			headers: {
-	// 				Authorization: `Bearer ${token}`,
-	// 			},
-	// 		});
-	// 		load();
-	// 		return response;
-	// 	} catch {}
-	// };
-
+	const handleFileAdd = async () => {
+		try {
+		  const jsonData = {
+			type: "excalidraw",
+			version: 2,
+			source: "http://localhost:3000",
+			elements: [],
+			appState: {
+			  gridSize: 20,
+			  viewBackgroundColor: "#ffffff",
+			},
+			files: {},
+		  };
+	  
+		  const { value: fileName } = await Swal.fire({
+			title: "Enter a file name",
+			input: "text",
+			inputLabel: "File Name",
+			inputPlaceholder: "Enter the name for the file",
+			showCancelButton: true,
+			confirmButtonText: "Upload",
+			inputValidator: (value) => {
+			  if (!value) return "You need to enter a file name!";
+			},
+		  });
+	  
+		  if (!fileName) return;
+	  
+		  const jsonString = JSON.stringify(jsonData, null, 2);
+		  const jsonFile = new Blob([jsonString], { type: "application/json" });
+	  
+		  const formData = new FormData();
+		  formData.append("file", jsonFile, `${fileName}.json`);
+		  formData.append("name", fileName);
+	  
+		  const token = getTokenFromCookie();
+	  
+			console.log(currentWorkspace)
+		  const response = await axios.post(
+			`http://localhost:5000/api/workspace/${currentNode?.id ? currentNode.id : currentWorkspace?._id}/add`,
+			formData,
+			{
+			  headers: {
+				Authorization: `Bearer ${token}`,
+				...formData.getHeaders?.(),
+			  },
+			}
+		  );
+	  
+		  load();
+		  return response;
+		} catch (error) {
+		  console.error(error);
+		  await Swal.fire({
+			icon: "error",
+			title: "Upload Failed",
+			text: "An error occurred while uploading the file.",
+		  });
+		}
+	  };
+	  
 	const handleFolderAdd = async () => {
 		try {
 			const formData = new FormData();
@@ -179,7 +218,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 	return (
 		<div className="file-tree-container">
 			<div className="file-actions">
-				<button onClick={() => {}}>
+				<button onClick={handleFileAdd}>
 					<FilePlus2 size={20} />
 				</button>
 				<button onClick={() => {}}>
