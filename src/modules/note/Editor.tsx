@@ -18,4 +18,3 @@ import React from "react";
 import imageUploadHandler from "./utils/imageUploadHandler";
 import toolbar from "./toolbar";
 
-const Editor = () => {
