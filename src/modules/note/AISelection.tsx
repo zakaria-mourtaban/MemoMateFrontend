@@ -67,6 +67,3 @@
 			</svg>
 		</Button>
 	);
-};
-
-export default AISelection;
