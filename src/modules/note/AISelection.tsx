@@ -38,4 +38,3 @@
 					/>
 				</g>
 				<g clipPath="url(#clip1_1_2)">
-					<path
