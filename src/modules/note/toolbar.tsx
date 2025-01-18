@@ -26,7 +26,6 @@ const toolbar = () => {
 				<InsertTable />
 				<InsertCodeBlock />
 				<InsertThematicBreak />
-				<ListsToggle />
 			</>
 		),
 	});
