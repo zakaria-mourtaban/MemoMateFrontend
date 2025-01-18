@@ -29,4 +29,3 @@
 					strokeLinejoin="round"
 				/>
 				<g clipPath="url(#clip0_1_2)">
-					<path
