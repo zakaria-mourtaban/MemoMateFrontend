@@ -145,7 +145,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			});
 
 			const formData = new FormData();
-			formData.append("file", jsonFile, `${fileName}.json`);
+			formData.append("file", jsonFile, `${fileName}.excalidraw`);
 			formData.append("name", fileName);
 
 			const token = getTokenFromCookie();
