@@ -21,7 +21,6 @@ const toolbar = () => {
 				<UndoRedo />
 				<BoldItalicUnderlineToggles />
 				<BlockTypeSelect />
-				<CreateLink />
 			</>
 		),
 	});
