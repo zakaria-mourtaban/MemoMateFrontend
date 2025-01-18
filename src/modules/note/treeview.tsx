@@ -50,7 +50,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 	};
 
 	const handleDelete = async () => {
-		console.log(currentNode)
+		console.log(currentNode);
 		if (!currentNode) return;
 		await apiCall(
 			"PATCH",
@@ -106,13 +106,83 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 		} catch {}
 	};
 
+	// const handleFileAdd = async () => {
+	// 	try {
+	// 		const formData = new FormData();
+
+	// 		// const file = await fileSelected;
+
+	// 		formData.append("file", file);
+	// 		formData.append("name", file.name);
+
+	// 		const token = getTokenFromCookie();
+	// 		const response = await axios({
+	// 			method: "POST",
+	// 			url: `http://localhost:5000/api/workspace/${
+	// 				currentNode.id ? currentNode.id : currentWorkspace?._id
+	// 			}/add`,
+	// 			data: formData,
+	// 			headers: {
+	// 				Authorization: `Bearer ${token}`,
+	// 			},
+	// 		});
+	// 		load();
+	// 		return response;
+	// 	} catch {}
+	// };
+
+	const handleFolderAdd = async () => {
+		try {
+			const formData = new FormData();
+			const fileInput = document.createElement("input");
+			fileInput.type = "file";
+			fileInput.accept = ".pdf,.docx,.excalidraw,.txt";
+
+			const fileSelected = new Promise<File>((resolve, reject) => {
+				fileInput.onchange = (event: Event) => {
+					const target = event.target as HTMLInputElement;
+					const selectedFile = target.files?.[0];
+					if (selectedFile) {
+						resolve(selectedFile);
+					} else {
+						reject(new Error("No file selected"));
+					}
+				};
+
+				fileInput.oncancel = () => {
+					reject();
+				};
+			});
+
+			fileInput.click();
+			const file = await fileSelected;
+
+			formData.append("file", file);
+			formData.append("name", file.name);
+
+			const token = getTokenFromCookie();
+			const response = await axios({
+				method: "POST",
+				url: `http://localhost:5000/api/workspace/${
+					currentNode.id ? currentNode.id : currentWorkspace?._id
+				}/add`,
+				data: formData,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			load();
+			return response;
+		} catch {}
+	};
+
 	return (
 		<div className="file-tree-container">
 			<div className="file-actions">
-				<button>
+				<button onClick={() => {}}>
 					<FilePlus2 size={20} />
 				</button>
-				<button>
+				<button onClick={() => {}}>
 					<FolderPlus size={20} />
 				</button>
 				<button onClick={alterAll}>
