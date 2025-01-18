@@ -1,4 +1,3 @@
-import React from "react";
 import { $getSelection, $isRangeSelection } from "lexical";
 
 const AISelection = () => {
