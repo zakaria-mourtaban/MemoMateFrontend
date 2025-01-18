@@ -27,7 +27,6 @@ const toolbar = () => {
 				<InsertCodeBlock />
 				<InsertThematicBreak />
 				<ListsToggle />
-				<AISelection />
 			</>
 		),
 	});
