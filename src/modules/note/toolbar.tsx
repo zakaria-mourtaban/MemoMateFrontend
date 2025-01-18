@@ -19,7 +19,6 @@ const toolbar = () => {
 		toolbarContents: () => (
 			<>
 				<UndoRedo />
-				<BoldItalicUnderlineToggles />
 			</>
 		),
 	});
