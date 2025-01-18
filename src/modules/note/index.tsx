@@ -8,4 +8,3 @@ const Note = () => {
 	return (
 		<RealmProvider>
 			<Editor />
-		</RealmProvider>
