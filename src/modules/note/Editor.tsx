@@ -13,4 +13,3 @@ import {
 	quotePlugin,
 	tablePlugin,
 	thematicBreakPlugin,
-} from "@mdxeditor/editor";
