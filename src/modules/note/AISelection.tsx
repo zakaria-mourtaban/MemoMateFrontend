@@ -1,4 +1,3 @@
-				// Get the current selection
 				const selection = $getSelection();
 
 				if (selection && $isRangeSelection(selection)) {
