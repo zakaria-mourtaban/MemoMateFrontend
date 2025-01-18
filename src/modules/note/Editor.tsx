@@ -34,4 +34,3 @@ const Editor = () => {
 						js: "JavaScript",
 						ts: "Typescript",
 						tsx: "React TSX",
-						json: "JSON",
