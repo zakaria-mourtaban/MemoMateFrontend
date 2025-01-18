@@ -30,4 +30,3 @@ const Editor = () => {
 				imagePlugin({ imageUploadHandler }),
 				codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
 				codeMirrorPlugin({
-					codeBlockLanguages: {
