@@ -64,4 +64,3 @@
 						/>
 					</clipPath>
 				</defs>
-			</svg>
