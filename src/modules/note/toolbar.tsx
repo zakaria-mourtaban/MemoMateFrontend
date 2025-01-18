@@ -22,7 +22,6 @@ const toolbar = () => {
 				<BoldItalicUnderlineToggles />
 				<BlockTypeSelect />
 				<CreateLink />
-				<InsertImage />
 			</>
 		),
 	});
