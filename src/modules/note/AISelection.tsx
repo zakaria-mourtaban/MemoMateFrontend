@@ -1,2 +1,1 @@
 	return (
-		<Button onClick={getCurrentSelection}>
