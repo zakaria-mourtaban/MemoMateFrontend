@@ -37,4 +37,3 @@ const Editor = () => {
 						json: "JSON",
 						diff: "Diff",
 						typescript: "Typescript",
-					},
