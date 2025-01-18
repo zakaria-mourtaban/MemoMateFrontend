@@ -7,8 +7,7 @@ import {
 	BlockTypeSelect,
 	CreateLink,
 	InsertImage,
-	InsertTable,
-	InsertCodeBlock,
+
 
 	
 
