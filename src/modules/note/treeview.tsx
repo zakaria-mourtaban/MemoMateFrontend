@@ -49,6 +49,12 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 		dispatch(setCollapsed(!collapsed));
 	};
 
+	const handleDelete = () => {
+		if (!currentNode)
+			return
+		
+	}
+
 	const handleFileUpload = async () => {
 		try {
 			const formData = new FormData();
