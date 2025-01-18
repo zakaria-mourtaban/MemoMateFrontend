@@ -58,4 +58,3 @@
 					<clipPath id="clip1_1_2">
 						<rect
 							width="6.25"
-							height="6.25"
