@@ -1,4 +1,3 @@
-	const getCurrentSelection = () => {
 		if (rootEditor) {
 			console.log(rootEditor);
 			rootEditor.update(() => {
