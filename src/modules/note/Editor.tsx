@@ -24,4 +24,3 @@ const Editor = () => {
 			autoFocus
 			markdown="# Hello world
 			sadsadasd
-			asdasdsa"
