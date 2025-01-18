@@ -14,10 +14,7 @@ import {
 } from "@mdxeditor/editor";
 
 const toolbar = () => {
-	return toolbarPlugin({
-		toolbarClassName: "toolbar",
 
-	});
 };
 
 export default toolbar
