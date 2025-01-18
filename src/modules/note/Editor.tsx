@@ -45,4 +45,3 @@ const Editor = () => {
 				headingsPlugin(),
 				listsPlugin(),
 				linkPlugin(),
-				quotePlugin(),
