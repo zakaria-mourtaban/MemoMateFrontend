@@ -11,4 +11,3 @@ import {
 	markdownShortcutPlugin,
 	MDXEditor,
 	quotePlugin,
-	tablePlugin,
