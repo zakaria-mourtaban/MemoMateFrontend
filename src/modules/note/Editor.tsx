@@ -38,4 +38,3 @@ const Editor = () => {
 						diff: "Diff",
 						typescript: "Typescript",
 					},
-				}),
