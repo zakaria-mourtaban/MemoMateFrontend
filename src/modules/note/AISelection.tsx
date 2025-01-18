@@ -56,4 +56,3 @@
 						/>
 					</clipPath>
 					<clipPath id="clip1_1_2">
-						<rect
