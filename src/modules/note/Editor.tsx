@@ -39,4 +39,3 @@ const Editor = () => {
 						typescript: "Typescript",
 					},
 				}),
-				tablePlugin(),
