@@ -31,4 +31,3 @@ const Editor = () => {
 				codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
 				codeMirrorPlugin({
 					codeBlockLanguages: {
-						js: "JavaScript",
