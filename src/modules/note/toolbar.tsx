@@ -20,7 +20,6 @@ const toolbar = () => {
 			<>
 				<UndoRedo />
 				<BoldItalicUnderlineToggles />
-				<BlockTypeSelect />
 			</>
 		),
 	});
