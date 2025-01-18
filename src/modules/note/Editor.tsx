@@ -26,4 +26,3 @@ const Editor = () => {
 			sadsadasd
 			asdasdsa"
 			plugins={[
-				toolbar(),
