@@ -23,7 +23,6 @@ const toolbar = () => {
 				<BlockTypeSelect />
 				<CreateLink />
 				<InsertImage />
-				<InsertTable />
 			</>
 		),
 	});
