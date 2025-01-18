@@ -18,7 +18,6 @@ const toolbar = () => {
 		toolbarClassName: "toolbar",
 		toolbarContents: () => (
 			<>
-				<UndoRedo />
 			</>
 		),
 	});
