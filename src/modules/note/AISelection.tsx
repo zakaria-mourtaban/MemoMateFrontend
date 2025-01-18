@@ -48,4 +48,3 @@
 				</g>
 				<defs>
 					<clipPath id="clip0_1_2">
-						<rect
