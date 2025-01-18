@@ -4,4 +4,3 @@ import {
 	codeMirrorPlugin,
 	directivesPlugin,
 	headingsPlugin,
-	imagePlugin,
