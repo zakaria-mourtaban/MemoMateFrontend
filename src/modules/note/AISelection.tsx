@@ -46,4 +46,3 @@
 						strokeLinejoin="round"
 					/>
 				</g>
-				<defs>
