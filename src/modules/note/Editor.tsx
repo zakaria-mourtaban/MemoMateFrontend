@@ -52,4 +52,3 @@ const Editor = () => {
 				}),
 				// DraggableParagraphPlugin(),
 			]}
-		/>
