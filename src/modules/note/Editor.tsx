@@ -46,4 +46,3 @@ const Editor = () => {
 				listsPlugin(),
 				linkPlugin(),
 				quotePlugin(),
-				markdownShortcutPlugin(),
