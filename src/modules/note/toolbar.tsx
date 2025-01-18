@@ -24,7 +24,6 @@ const toolbar = () => {
 				<CreateLink />
 				<InsertImage />
 				<InsertTable />
-				<InsertCodeBlock />
 			</>
 		),
 	});
