@@ -7,4 +7,3 @@ import {
 	imagePlugin,
 	linkDialogPlugin,
 	linkPlugin,
-	listsPlugin,
