@@ -24,10 +24,10 @@ interface FileNode {
 
 interface FileTreeViewProps {
 	data: FileNode[];
-	load: any
+	load: any;
 }
 
-const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
+const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 	const treeRef = useRef<TreeApi<FileNode>>(null);
 	const collapsed = useSelector(
 		(state: RootState) => state.treeView.collapsed
@@ -49,11 +49,16 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 		dispatch(setCollapsed(!collapsed));
 	};
 
-	const handleDelete = () => {
-		if (!currentNode)
-			return
-		
-	}
+	const handleDelete = async () => {
+		if (!currentNode) return;
+		await apiCall(
+			"PATCH",
+			`api/workspace/${currentNode.id}/delete`,
+			{},
+			true
+		);
+		load();
+	};
 
 	const handleFileUpload = async () => {
 		try {
@@ -93,12 +98,11 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 				data: formData,
 				headers: {
 					Authorization: `Bearer ${token}`,
-					// Don't set Content-Type, let axios set it automatically for FormData
 				},
 			});
-			load()
+			load();
 			return response;
-		} catch{}
+		} catch {}
 	};
 
 	return (
@@ -118,10 +122,10 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 					)}
 				</button>
 				<button onClick={handleFileUpload}>
-					<Upload size={20}/>
+					<Upload size={20} />
 				</button>
 				<button onClick={handleFileUpload}>
-					<Trash size={20}/>
+					<Trash size={20} />
 				</button>
 			</div>
 			<div className="tree-content">
@@ -136,7 +140,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 					padding={8}
 					onFocus={(node) => {
 						dispatch(setCurrentNode(node[0]?.data));
-					}}			
+					}}
 				>
 					{Node}
 				</Tree>
