@@ -50,4 +50,3 @@ const Editor = () => {
 				directivesPlugin({
 					directiveDescriptors: [AdmonitionDirectiveDescriptor],
 				}),
-				// DraggableParagraphPlugin(),
