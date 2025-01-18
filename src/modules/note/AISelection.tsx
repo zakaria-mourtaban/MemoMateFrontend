@@ -1,4 +1,3 @@
-					if (selectedText.length > 0) console.log(selectedText);
 					else {
 						console.log("No text selection found.");
 					}
