@@ -49,4 +49,3 @@
 				<defs>
 					<clipPath id="clip0_1_2">
 						<rect
-							width="6.25"
