@@ -26,4 +26,3 @@
 					stroke="currentcolor"
 					strokeWidth="1.4"
 					strokeLinecap="round"
-					strokeLinejoin="round"
