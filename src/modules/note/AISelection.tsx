@@ -63,4 +63,3 @@
 							transform="translate(16.5 14.875)"
 						/>
 					</clipPath>
-				</defs>
