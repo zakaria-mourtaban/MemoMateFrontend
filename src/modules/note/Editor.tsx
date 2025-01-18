@@ -20,4 +20,3 @@ import toolbar from "./toolbar";
 
 const Editor = () => {
 	return (
-		<MDXEditor
