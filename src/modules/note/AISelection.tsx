@@ -1,4 +1,3 @@
-import { $getSelection, $isRangeSelection } from "lexical";
 
 const AISelection = () => {
 	// Access the root editor instance
