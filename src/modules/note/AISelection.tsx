@@ -1,4 +1,3 @@
-			console.log(rootEditor);
 			rootEditor.update(() => {
 				// Get the current selection
 				const selection = $getSelection();
