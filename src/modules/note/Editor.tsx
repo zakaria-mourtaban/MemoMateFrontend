@@ -27,4 +27,3 @@ const Editor = () => {
 			asdasdsa"
 			plugins={[
 				toolbar(),
-				imagePlugin({ imageUploadHandler }),
