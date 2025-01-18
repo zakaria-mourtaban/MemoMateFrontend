@@ -55,4 +55,3 @@
 							transform="translate(2.5625 3.375)"
 						/>
 					</clipPath>
-					<clipPath id="clip1_1_2">
