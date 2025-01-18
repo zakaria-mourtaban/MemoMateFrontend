@@ -66,4 +66,3 @@
 				</defs>
 			</svg>
 		</Button>
-	);
