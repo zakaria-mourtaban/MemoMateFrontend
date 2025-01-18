@@ -36,4 +36,3 @@
 						strokeLinecap="round"
 						strokeLinejoin="round"
 					/>
-				</g>
