@@ -1,4 +1,3 @@
-					//const focusNode = selection.focus.getNode();
 					const selectedText = selection.getTextContent();
 					if (selectedText.length > 0) console.log(selectedText);
 					else {
