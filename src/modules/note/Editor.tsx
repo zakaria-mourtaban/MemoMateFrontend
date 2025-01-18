@@ -10,4 +10,3 @@ import {
 	listsPlugin,
 	markdownShortcutPlugin,
 	MDXEditor,
-	quotePlugin,
