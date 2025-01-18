@@ -1,4 +1,3 @@
-
 const AISelection = () => {
 	// Access the root editor instance
 	const rootEditor = useCellValue(rootEditor$);
