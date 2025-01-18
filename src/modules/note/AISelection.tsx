@@ -1,4 +1,3 @@
-				const selection = $getSelection();
 
 				if (selection && $isRangeSelection(selection)) {
 					// Access details about the selection
