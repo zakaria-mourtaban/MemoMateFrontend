@@ -16,10 +16,7 @@ import {
 const toolbar = () => {
 	return toolbarPlugin({
 		toolbarClassName: "toolbar",
-		toolbarContents: () => (
-			<>
-			</>
-		),
+
 	});
 };
 
