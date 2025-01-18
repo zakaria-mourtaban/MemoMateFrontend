@@ -1,4 +1,3 @@
-
 				if (selection && $isRangeSelection(selection)) {
 					// Access details about the selection
 					//const anchorNode = selection.anchor.getNode();
