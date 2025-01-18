@@ -1,4 +1,3 @@
 import {
 	AdmonitionDirectiveDescriptor,
 	codeBlockPlugin,
-	codeMirrorPlugin,
