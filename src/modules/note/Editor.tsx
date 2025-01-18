@@ -29,4 +29,3 @@ const Editor = () => {
 				toolbar(),
 				imagePlugin({ imageUploadHandler }),
 				codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
-				codeMirrorPlugin({
