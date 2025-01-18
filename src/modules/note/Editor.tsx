@@ -49,4 +49,3 @@ const Editor = () => {
 				markdownShortcutPlugin(),
 				directivesPlugin({
 					directiveDescriptors: [AdmonitionDirectiveDescriptor],
-				}),
