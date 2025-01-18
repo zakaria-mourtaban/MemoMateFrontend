@@ -3,8 +3,7 @@ import AISelection from "./AISelection";
 import {
 	toolbarPlugin,
 	UndoRedo,
-	BoldItalicUnderlineToggles,
-	BlockTypeSelect,
+
 
 
 
