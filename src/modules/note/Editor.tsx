@@ -25,4 +25,3 @@ const Editor = () => {
 			markdown="# Hello world
 			sadsadasd
 			asdasdsa"
-			plugins={[
