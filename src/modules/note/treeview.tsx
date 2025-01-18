@@ -5,8 +5,10 @@ import "./styles/treeview.css";
 import {
 	ChevronsDownUp,
 	ChevronsUpDown,
+	Delete,
 	FilePlus2,
 	FolderPlus,
+	Trash,
 	Upload,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,20 +99,23 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 		<div className="file-tree-container">
 			<div className="file-actions">
 				<button>
-					<FilePlus2 size={25} />
+					<FilePlus2 size={20} />
 				</button>
 				<button>
-					<FolderPlus size={25} />
+					<FolderPlus size={20} />
 				</button>
 				<button onClick={alterAll}>
 					{collapsed ? (
-						<ChevronsUpDown size={25} />
+						<ChevronsUpDown size={20} />
 					) : (
-						<ChevronsDownUp size={25} />
+						<ChevronsDownUp size={20} />
 					)}
 				</button>
 				<button onClick={handleFileUpload}>
-					<Upload />
+					<Upload size={20}/>
+				</button>
+				<button onClick={handleFileUpload}>
+					<Trash size={20}/>
 				</button>
 			</div>
 			<div className="tree-content">
