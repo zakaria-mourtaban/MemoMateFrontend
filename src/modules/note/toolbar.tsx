@@ -25,7 +25,6 @@ const toolbar = () => {
 				<InsertImage />
 				<InsertTable />
 				<InsertCodeBlock />
-				<InsertThematicBreak />
 			</>
 		),
 	});
