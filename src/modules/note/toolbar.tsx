@@ -5,8 +5,7 @@ import {
 	UndoRedo,
 	BoldItalicUnderlineToggles,
 	BlockTypeSelect,
-	CreateLink,
-	InsertImage,
+
 
 
 	
