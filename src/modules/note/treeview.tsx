@@ -36,6 +36,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 	const currentWorkspace = useSelector(
 		(state: RootState) => state.workspaceApi.current
 	);
+	const [selectedId, setSelectedId] = React.useState(null);
 	const dispatch = useDispatch();
 
 	Node.displayName = "Node";
@@ -122,10 +123,9 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data , load }) => {
 					indent={24}
 					rowHeight={32}
 					padding={8}
-					onSelect={(node) => {
-						console.log(node[0]?.data)
+					onFocus={(node) => {
 						dispatch(setCurrentNode(node[0]?.data));
-					}}
+					}}			
 				>
 					{Node}
 				</Tree>
