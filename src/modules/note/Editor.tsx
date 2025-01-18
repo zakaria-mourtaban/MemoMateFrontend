@@ -28,4 +28,3 @@ const Editor = () => {
 			plugins={[
 				toolbar(),
 				imagePlugin({ imageUploadHandler }),
-				codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
