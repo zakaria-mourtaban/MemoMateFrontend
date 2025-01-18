@@ -9,6 +9,6 @@ import {
 	InsertImage,
 	InsertTable,
 	InsertCodeBlock,
-	InsertThematicBreak,
 
+	
 
