@@ -1,4 +1,3 @@
-		if (rootEditor) {
 			console.log(rootEditor);
 			rootEditor.update(() => {
 				// Get the current selection
