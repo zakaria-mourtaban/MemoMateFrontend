@@ -14,4 +14,3 @@ import {
 } from "@mdxeditor/editor";
 
 
-export default toolbar
