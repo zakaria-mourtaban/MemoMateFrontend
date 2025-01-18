@@ -1,4 +1,3 @@
-					// Access details about the selection
 					//const anchorNode = selection.anchor.getNode();
 					//const focusNode = selection.focus.getNode();
 					const selectedText = selection.getTextContent();
