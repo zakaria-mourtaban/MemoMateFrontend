@@ -65,4 +65,3 @@
 					</clipPath>
 				</defs>
 			</svg>
-		</Button>
