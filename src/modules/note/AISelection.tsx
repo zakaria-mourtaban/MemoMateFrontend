@@ -35,4 +35,3 @@
 						strokeWidth="1"
 						strokeLinecap="round"
 						strokeLinejoin="round"
-					/>
