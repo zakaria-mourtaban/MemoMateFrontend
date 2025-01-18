@@ -14,4 +14,3 @@ import {
 	tablePlugin,
 	thematicBreakPlugin,
 } from "@mdxeditor/editor";
-import React from "react";
