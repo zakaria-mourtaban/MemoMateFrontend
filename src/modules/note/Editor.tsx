@@ -44,4 +44,3 @@ const Editor = () => {
 				linkDialogPlugin(),
 				headingsPlugin(),
 				listsPlugin(),
-				linkPlugin(),
