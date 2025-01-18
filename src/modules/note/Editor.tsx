@@ -40,4 +40,3 @@ const Editor = () => {
 					},
 				}),
 				tablePlugin(),
-				thematicBreakPlugin(),
