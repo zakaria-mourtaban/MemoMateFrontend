@@ -9,4 +9,3 @@ const Note = () => {
 		<RealmProvider>
 			<Editor />
 		</RealmProvider>
-	);
