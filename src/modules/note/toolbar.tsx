@@ -11,6 +11,5 @@ import {
 	InsertCodeBlock,
 	InsertThematicBreak,
 	ListsToggle,
-} from "@mdxeditor/editor";
 
 
