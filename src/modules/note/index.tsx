@@ -11,4 +11,3 @@ const Note = () => {
 		</RealmProvider>
 	);
 };
-export default Note;
