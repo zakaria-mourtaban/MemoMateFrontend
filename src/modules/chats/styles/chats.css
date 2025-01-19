@@ -82,19 +82,18 @@
 	padding: 10px;
 	border: none;
 	border-radius: 5px;
-	color: black;
+	color: #545454;
 }
 
-.chat-input input::placeholder
-{
-	color: black;
+.chat-input input::placeholder {
+	color: #545454;
 }
 
 .chat-input button {
 	padding: 10px 20px;
 	margin-left: 10px;
 	background-color: #ffd4e8;
-	color: #000000;
+	color: #545454;
 	font-weight: 600;
 	border: none;
 	border-radius: 5px;
