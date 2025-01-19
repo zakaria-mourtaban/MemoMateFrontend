@@ -140,9 +140,9 @@ export const useNoteHandler = () => {
 				});
 	
 				const res = await apiCall(
-					"GET",
+					"POST",
 					"api/chat/all/" + current?._id,
-					{ prompt: result.value },
+					{ name: result.value },
 					true
 				);
 	
