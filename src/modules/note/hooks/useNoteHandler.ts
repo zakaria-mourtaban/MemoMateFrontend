@@ -15,7 +15,7 @@ export const useNoteHandler = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [treeData, setTreeData] = useState([]);
-
+	const currentNode = useSelector((state: RootState) => state.treeView.currentNode);
 	const navigate = useNavigate();
 	const [excalidrawAPI] = useExcalidrawAPI();
 	const current = useSelector(
@@ -172,5 +172,6 @@ export const useNoteHandler = () => {
 		toggleKmenu,
 		indexCaller,
 		loadTree,
+		currentNode
 	};
 };

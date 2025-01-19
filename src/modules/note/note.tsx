@@ -25,6 +25,7 @@ const Note: React.FC = () => {
 		toggleKmenu,
 		indexCaller,
 		loadTree,
+		currentNode
 	} = useNoteHandler();
 
 	return (
@@ -35,7 +36,11 @@ const Note: React.FC = () => {
 					<TreeViewComponent data={treeData} load={loadTree} />
 				</div>
 				<div className="content-area">
-					<ExcalidrawComponent />
+					{currentNode?.name.endsWith(".excalidraw") ? (
+						<ExcalidrawComponent />
+					) : (
+						<MediaViewer file={currentNode} />
+					)}
 				</div>
 			</div>
 
