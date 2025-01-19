@@ -7,6 +7,7 @@ import { convertToExcalidrawElements } from "@excalidraw/excalidraw";
 import { apiCall } from "../../core/utils/api";
 import Swal from "sweetalert2";
 import { RootState } from "store/store";
+import { create } from "node:domain";
 
 let filteredCommands = [];
 
@@ -15,14 +16,16 @@ export const useNoteHandler = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [treeData, setTreeData] = useState([]);
-	const currentNode = useSelector((state: RootState) => state.treeView.currentNode);
+	const currentNode = useSelector(
+		(state: RootState) => state.treeView.currentNode
+	);
 	const navigate = useNavigate();
 	const [excalidrawAPI] = useExcalidrawAPI();
 	const current = useSelector(
 		(state: RootState) => state.workspaceApi.current
 	);
 
-	const commands = ["Create Diagram"];
+	const commands = ["Create Diagram", "Create Chat"];
 	console.log(treeData);
 	const recursiveRename = (data) => {
 		if (!data) {
@@ -109,17 +112,69 @@ export const useNoteHandler = () => {
 		}
 	}, [excalidrawAPI]);
 
+	const createChat = useCallback(async () => {
+		const result = await Swal.fire({
+			title: "Create chat",
+			input: "textarea",
+			inputPlaceholder: "Chat name",
+			showCancelButton: true,
+			confirmButtonText: "Create",
+			cancelButtonText: "Cancel",
+			inputAttributes: {
+				style: "height: 100px; font-size: 16px;",
+			},
+			inputValidator: (value) => {
+				if (!value) return "Please enter chat name";
+				return null;
+			},
+		});
+
+		if (result.isConfirmed && result.value) {
+			try {
+				const res = await apiCall(
+					"POST",
+					"api/chat/diagram",
+					{ prompt: result.value },
+					true
+				);
+				const { elements, files } = await parseMermaidToExcalidraw(
+					res.data.response.kwargs.content.toString()
+				);
+
+				const excalidrawElements =
+					convertToExcalidrawElements(elements);
+
+				if (files) {
+					excalidrawAPI.addFiles(Object.values(files));
+				}
+
+				const sceneElements = await excalidrawAPI.getSceneElements();
+				excalidrawAPI.updateScene({
+					elements: [...sceneElements, ...excalidrawElements],
+				});
+			} catch (error) {
+				Swal.fire({
+					title: "An Error occurred",
+					text: error.toString(),
+				});
+			}
+		}
+	},[]);
+
 	const indexCaller = useCallback(
 		(index: number) => {
 			switch (index) {
 				case 0:
 					createDiagram();
 					break;
+				case 1:
+					createChat();
+					break;
 				default:
 					break;
 			}
 		},
-		[createDiagram]
+		[createDiagram, createChat]
 	);
 
 	useEffect(() => {
@@ -172,6 +227,6 @@ export const useNoteHandler = () => {
 		toggleKmenu,
 		indexCaller,
 		loadTree,
-		currentNode
+		currentNode,
 	};
 };
