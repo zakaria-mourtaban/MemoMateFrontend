@@ -36,11 +36,6 @@ const Note: React.FC = () => {
 					<TreeViewComponent data={treeData} load={loadTree} />
 				</div>
 				<div className="content-area">
-					{/* {currentNode?.name.endsWith(".excalidraw") ? (
-						<ExcalidrawComponent />
-					) : (
-						<MediaViewer file={currentNode} />
-					)} */}
 					<ExcalidrawComponent/>
 				</div>
 			</div>

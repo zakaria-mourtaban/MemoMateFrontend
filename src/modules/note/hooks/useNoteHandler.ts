@@ -127,38 +127,47 @@ export const useNoteHandler = () => {
 				return null;
 			},
 		});
-
+	
 		if (result.isConfirmed && result.value) {
 			try {
+				// Show loading throbber
+				Swal.fire({
+					title: 'Creating chat...',
+					allowOutsideClick: false,
+					didOpen: () => {
+						Swal.showLoading();
+					},
+				});
+	
 				const res = await apiCall(
-					"POST",
-					"api/chat/diagram",
+					"GET",
+					"api/chat/all/" + current?._id,
 					{ prompt: result.value },
 					true
 				);
-				const { elements, files } = await parseMermaidToExcalidraw(
-					res.data.response.kwargs.content.toString()
-				);
-
-				const excalidrawElements =
-					convertToExcalidrawElements(elements);
-
-				if (files) {
-					excalidrawAPI.addFiles(Object.values(files));
-				}
-
-				const sceneElements = await excalidrawAPI.getSceneElements();
-				excalidrawAPI.updateScene({
-					elements: [...sceneElements, ...excalidrawElements],
+	
+				// Close the loading throbber
+				Swal.close();
+	
+				// Optionally, show a success message
+				Swal.fire({
+					title: 'Success!',
+					text: 'Chat created successfully.',
+					icon: 'success',
+					confirmButtonText: 'OK',
 				});
+	
 			} catch (error) {
+				Swal.close();
 				Swal.fire({
 					title: "An Error occurred",
 					text: error.toString(),
+					icon: 'error',
+					confirmButtonText: 'OK',
 				});
 			}
 		}
-	},[]);
+	}, []);
 
 	const indexCaller = useCallback(
 		(index: number) => {
