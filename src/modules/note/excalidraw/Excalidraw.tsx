@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
 import "../styles/excalidraw.css";
 import { apiCall } from "../../core/utils/api";
@@ -11,11 +11,12 @@ const ExcalidrawComponent = () => {
 	const current = useSelector(
 		(state: RootState) => state.treeView.currentNode
 	);
+	const [initialData, setInitialData] = useState({});
 
 	// Debounced save function
 	const debouncedSave = useCallback(
 		debounce(async () => {
-			if (excalidrawAPI && current?._id) {
+			if (excalidrawAPI && current?.id && current?.children == null) {
 				const elements =
 					await excalidrawAPI.getSceneElementsIncludingDeleted();
 				const appState = excalidrawAPI.getAppState();
@@ -28,39 +29,37 @@ const ExcalidrawComponent = () => {
 				});
 				await apiCall(
 					"POST",
-					"api/workspace/" + current?._id + "/update",
+					"api/workspace/" + current?.id + "/update",
 					data,
 					true
 				);
 			}
-		}, 5000), // Debounce delay of 500ms
+		}, 500),
 		[excalidrawAPI, current]
 	);
-
-	// Debounced load function
-	const debouncedLoad = useCallback(
-		debounce(async () => {
-			if (excalidrawAPI && current?._id) {
-				const res = await apiCall(
-					"POST",
-					"api/workspace/" + current?._id + "/fetch",
-					{},
-					true
-				);
-				console.log(res);
-			}
-		}, 5000), // Debounce delay of 500ms
-		[excalidrawAPI, current]
-	);
-
 	const handleSaveAsExcalidrawFile = () => {
 		debouncedSave();
 	};
-
-	const handleLoadExcalidrawFile = () => {
-		debouncedLoad();
+	const loaddata = async () => {
+		if (excalidrawAPI && current?.id && current?.children == null) {
+			const res = await apiCall(
+				"PATCH",
+				"api/workspace/" + current?.id + "/file",
+				{},
+				true
+			);
+			console.log(res.data);
+			excalidrawAPI.updateScene({
+				elements: res.data.elements || [],
+				appState: res.data.appState || {},
+				files: res.data.files || {},
+				collaborators: [],
+			});
+		}
 	};
-
+	useEffect(() => {
+		loaddata();
+	}, [current]);
 	return (
 		<div
 			style={{
@@ -72,13 +71,7 @@ const ExcalidrawComponent = () => {
 			<div style={{ flex: 1 }}>
 				<Excalidraw
 					excalidrawAPI={(api) => setExcalidrawAPI(api)}
-					initialData={{
-						elements: [],
-						appState: {
-							viewBackgroundColor: "#ffffff",
-							gridSize: 20,
-						},
-					}}
+					initialData={initialData}
 					name="Excalidraw Canvas"
 					handleKeyboardGlobally={true}
 					UIOptions={{
@@ -92,8 +85,8 @@ const ExcalidrawComponent = () => {
 						},
 					}}
 					onChange={() => {
+						if (current?.children === null) return;
 						handleSaveAsExcalidrawFile();
-						handleLoadExcalidrawFile();
 					}}
 				>
 					<MainMenu>

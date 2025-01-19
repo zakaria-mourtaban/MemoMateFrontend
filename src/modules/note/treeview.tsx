@@ -210,7 +210,8 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			return response;
 		} catch {}
 	};
-
+	console.log(data)
+	data[0]?.children && dispatch(setCurrentNode(data[0].children[0]));
 	return (
 		<div className="file-tree-container">
 			<div className="file-actions">
