@@ -7,7 +7,6 @@ import { convertToExcalidrawElements } from "@excalidraw/excalidraw";
 import { apiCall } from "../../core/utils/api";
 import Swal from "sweetalert2";
 import { RootState } from "store/store";
-import { create } from "node:domain";
 
 let filteredCommands = [];
 

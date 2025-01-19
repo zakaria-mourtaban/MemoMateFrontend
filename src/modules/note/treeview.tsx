@@ -30,6 +30,11 @@ interface FileTreeViewProps {
 	load: any;
 }
 
+axios.interceptors.request.use((request) => {
+	console.log("Request:", request);
+	return request;
+});
+
 const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 	const treeRef = useRef<TreeApi<FileNode>>(null);
 	const collapsed = useSelector(
@@ -83,36 +88,54 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 				};
 
 				fileInput.oncancel = () => {
-					reject();
+					reject(new Error("File selection canceled"));
 				};
 			});
 
 			fileInput.click();
+			console.log("File dialog opened");
+
 			const file = await fileSelected;
+			console.log("File selected:", file.name);
 
 			formData.append("file", file);
 			formData.append("name", file.name);
 
 			const token = getTokenFromCookie();
+			console.log("Token:", token);
+
+			const workspaceId = currentNode?.id
+				? currentNode.id
+				: currentWorkspace?._id;
+			if (!workspaceId) {
+				throw new Error("No workspace ID found");
+			}
+
 			const response = await axios({
 				method: "POST",
-				url: `http://localhost:5000/api/workspace/${
-					currentNode.id ? currentNode.id : currentWorkspace?._id
-				}/add`,
+				url: `http://localhost:5000/api/workspace/${workspaceId}/add`,
 				data: formData,
 				headers: {
 					Authorization: `Bearer ${token}`,
+					"Content-Type": "multipart/form-data",
 				},
 			});
+
+			console.log("File upload successful:", response.data);
 			load();
 			return response;
-		} catch {}
+		} catch (error) {
+			console.error("File upload failed:", error);
+			if (axios.isAxiosError(error)) {
+				console.error("Response data:", error.response?.data);
+				console.error("Status code:", error.response?.status);
+			}
+			throw error; // Re-throw the error if needed
+		}
 	};
-
 	const handleFileAdd = async () => {
 		try {
-			if (currentNode?.id && !currentNode.children)
-				return
+			if (currentNode?.id && !currentNode.children) return;
 			const jsonData = {
 				type: "excalidraw",
 				version: 2,
@@ -210,7 +233,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			return response;
 		} catch {}
 	};
-	console.log(data)
+	console.log(data);
 	data[0]?.children && dispatch(setCurrentNode(data[0].children[0]));
 	return (
 		<div className="file-tree-container">

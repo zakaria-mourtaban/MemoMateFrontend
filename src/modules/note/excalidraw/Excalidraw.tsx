@@ -59,6 +59,7 @@ const ExcalidrawComponent = () => {
 	};
 	useEffect(() => {
 		loaddata();
+		console.log("changed")
 	}, [current]);
 	return (
 		<div
