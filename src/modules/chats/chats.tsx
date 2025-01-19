@@ -11,6 +11,7 @@ const Chats = () => {
 	const [currentChat, setCurrentChat] = useState(null); // State to track the currently selected chat
 	const [newMessage, setNewMessage] = useState(""); // State to store the new message input
 	const [loading, setLoading] = useState(true); // State to handle loading state
+	const [isSending, setIsSending] = useState(false); // State to track if a message is being sent
 	const navigate = useNavigate();
 
 	// Fetch chats for the current user when the component mounts
@@ -68,21 +69,26 @@ const Chats = () => {
 	const handleSendMessage = async () => {
 		if (newMessage.trim()) {
 			try {
+				setIsSending(true); // Start loading animation
+
 				// Make a POST request to the API endpoint
-				const token = getTokenFromCookie();
 				const response = await apiCall(
 					`POST`,
-					"/api/chat/${currentChat._id}/call",
+					`/api/chat/${currentChat._id}/call`,
 					{ query: newMessage },
 					true
 				);
 
-				// Update the current chat with the new message
+				// Extract the answer from the response
+				const answer = response.data.answer; // Assuming the response contains an "answer" property
+
+				// Update the current chat with the user's message and the bot's answer
 				const updatedChat = {
 					...currentChat,
 					messages: [
 						...currentChat.messages,
-						{ sender: "user", text: newMessage },
+						{ sender: "user", text: newMessage }, // User's message
+						{ sender: "bot", text: answer }, // Bot's answer
 					],
 				};
 
@@ -103,6 +109,8 @@ const Chats = () => {
 					text: "Failed to send message. Please try again.",
 				});
 				console.error("Error sending message:", err);
+			} finally {
+				setIsSending(false); // Stop loading animation
 			}
 		}
 	};
@@ -157,6 +165,14 @@ const Chats = () => {
 									)
 								) : (
 									<div>No messages yet</div>
+								)}
+								{/* Loading animation */}
+								{isSending && (
+									<div className="loading-dots">
+										<div className="dot"></div>
+										<div className="dot"></div>
+										<div className="dot"></div>
+									</div>
 								)}
 							</div>
 							<div className="chat-input">
