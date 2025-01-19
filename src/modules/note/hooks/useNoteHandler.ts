@@ -8,6 +8,8 @@ import { apiCall } from "../../core/utils/api";
 import Swal from "sweetalert2";
 import { RootState } from "store/store";
 
+let filteredCommands = [];
+
 export const useNoteHandler = () => {
 	const [isKmenuOpen, setIsKmenuOpen] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
@@ -23,8 +25,10 @@ export const useNoteHandler = () => {
 	const commands = ["Create Diagram"];
 	console.log(treeData);
 	const recursiveRename = (data) => {
-		if (!data) { return null }
-		console.log(data)
+		if (!data) {
+			return null;
+		}
+		console.log(data);
 		return data.map((e) => ({
 			id: e._id,
 			name: e.name,
@@ -118,8 +122,6 @@ export const useNoteHandler = () => {
 		[createDiagram]
 	);
 
-	// Keyboard event handlers
-	let filteredCommands = [];
 	useEffect(() => {
 		filteredCommands = commands.filter((cmd) =>
 			cmd.toLowerCase().includes(searchQuery.toLowerCase())
