@@ -1,45 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
 import "../styles/excalidraw.css";
 import { apiCall } from "../../core/utils/api";
 import { useSelector } from "react-redux";
 import { RootState } from "store/store";
+import { debounce } from "lodash";
 
 const ExcalidrawComponent = () => {
 	const [excalidrawAPI, setExcalidrawAPI] = useState(null);
 	const current = useSelector(
 		(state: RootState) => state.treeView.currentNode
 	);
-	const handleSaveAsExcalidrawFile = async () => {
-		if (excalidrawAPI && current?._id) {
-			const elements =
-				await excalidrawAPI.getSceneElementsIncludingDeleted();
-			const appState = excalidrawAPI.getAppState();
-			const files = excalidrawAPI.getFiles();
 
-			const data = JSON.stringify({
-				elements,
-				appState,
-				files,
-			});
-			await apiCall(
-				"POST",
-				"api/workspace/" + current?._id + "/update",
-				data,
-				true
-			);
-		}
+	// Debounced save function
+	const debouncedSave = useCallback(
+		debounce(async () => {
+			if (excalidrawAPI && current?._id) {
+				const elements =
+					await excalidrawAPI.getSceneElementsIncludingDeleted();
+				const appState = excalidrawAPI.getAppState();
+				const files = excalidrawAPI.getFiles();
+
+				const data = JSON.stringify({
+					elements,
+					appState,
+					files,
+				});
+				await apiCall(
+					"POST",
+					"api/workspace/" + current?._id + "/update",
+					data,
+					true
+				);
+			}
+		}, 5000), // Debounce delay of 500ms
+		[excalidrawAPI, current]
+	);
+
+	// Debounced load function
+	const debouncedLoad = useCallback(
+		debounce(async () => {
+			if (excalidrawAPI && current?._id) {
+				const res = await apiCall(
+					"POST",
+					"api/workspace/" + current?._id + "/fetch",
+					{},
+					true
+				);
+				console.log(res);
+			}
+		}, 5000), // Debounce delay of 500ms
+		[excalidrawAPI, current]
+	);
+
+	const handleSaveAsExcalidrawFile = () => {
+		debouncedSave();
 	};
 
-	const handleLoadExcalidrawFile = async () => {
-		if (excalidrawAPI && current?._id) {
-			const res = await apiCall(
-				"POST",
-				"api/workspace/" + current?._id + "/fetch",
-				{},
-				true
-			);
-		}
+	const handleLoadExcalidrawFile = () => {
+		debouncedLoad();
 	};
 
 	return (
@@ -72,7 +91,10 @@ const ExcalidrawComponent = () => {
 							toggleTheme: true,
 						},
 					}}
-					onChange={handleSaveAsExcalidrawFile}
+					onChange={() => {
+						handleSaveAsExcalidrawFile();
+						handleLoadExcalidrawFile();
+					}}
 				>
 					<MainMenu>
 						<MainMenu.DefaultItems.LoadScene></MainMenu.DefaultItems.LoadScene>
