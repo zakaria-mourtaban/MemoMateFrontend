@@ -166,12 +166,13 @@ const Chats = () => {
 								) : (
 									<div>No messages yet</div>
 								)}
-								{/* Loading animation */}
 								{isSending && (
-									<div className="loading-dots">
-										<div className="dot"></div>
-										<div className="dot"></div>
-										<div className="dot"></div>
+									<div className="message bot">
+										<div className="loading-dots">
+											<div className="dot"></div>
+											<div className="dot"></div>
+											<div className="dot"></div>
+										</div>
 									</div>
 								)}
 							</div>

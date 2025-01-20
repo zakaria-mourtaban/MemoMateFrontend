@@ -17,15 +17,15 @@ const treeViewSlice = createSlice({
 	name: "treeView",
 	initialState: {
 		collapsed: false,
-		currentNode: null
+		currentNode: null,
 	},
 	reducers: {
 		setCollapsed: (state, action) => {
 			state.collapsed = action.payload;
 		},
 		setCurrentNode: (state, action) => {
-			state.currentNode = action.payload
-		}
+			state.currentNode = action.payload;
+		},
 	},
 });
 
@@ -45,6 +45,34 @@ const workspaceApiSlice = createSlice({
 	},
 });
 
+const authReducer = (
+	state = {
+		isAuthenticated: false,
+		user: null,
+		token: null,
+	},
+	action
+) => {
+	switch (action.type) {
+		case "LOGIN_SUCCESS":
+			return {
+				...state,
+				isAuthenticated: true,
+				user: action.payload.user,
+				token: action.payload.token,
+			};
+		case "LOGOUT":
+			return {
+				...state,
+				isAuthenticated: false,
+				user: null,
+				token: null,
+			};
+		default:
+			return state;
+	}
+};
+
 export const { setCollapsed, setCurrentNode } = treeViewSlice.actions;
 export const { setWorkspace } = workspaceApiSlice.actions;
 export const { setCurrent } = workspaceApiSlice.actions;
@@ -53,7 +81,8 @@ const store = configureStore({
 	reducer: {
 		treeView: treeViewSlice.reducer,
 		workspaceApi: workspaceApiSlice.reducer,
-		excalidraw: ExcalidrawSlice.reducer
+		excalidraw: ExcalidrawSlice.reducer,
+		auth: authReducer
 	},
 });
 
