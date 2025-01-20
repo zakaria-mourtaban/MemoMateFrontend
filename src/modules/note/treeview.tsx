@@ -113,7 +113,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 
 			const response = await axios({
 				method: "POST",
-				url: `http://localhost:5000/api/workspace/${workspaceId}/add`,
+				url: `http://15.188.63.103:8000/api/workspace/${workspaceId}/add`,
 				data: formData,
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -174,7 +174,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			const token = getTokenFromCookie();
 
 			const response = await axios.post(
-				`http://localhost:5000/api/workspace/${
+				`http://15.188.63.103:8000/api/workspace/${
 					currentNode?.id ? currentNode.id : currentWorkspace?._id
 				}/add`,
 				formData,
@@ -221,7 +221,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			const token = getTokenFromCookie();
 			const response = await axios({
 				method: "POST",
-				url: `http://localhost:5000/api/workspace/${
+				url: `http://15.188.63.103:8000/api/workspace/${
 					currentNode?.id ? currentNode.id : currentWorkspace?._id
 				}/add`,
 				data: formData,

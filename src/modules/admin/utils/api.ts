@@ -26,7 +26,7 @@ export const apiCall = async (
 		url,
 		data,
 		headers,
-		baseURL: "http://localhost:5000",
+		baseURL: "http://15.188.63.103:8000",
 	});
 };
 

@@ -20,7 +20,7 @@ const Chats = () => {
 			try {
 				const token = getTokenFromCookie();
 				const response = await axios.post(
-					"http://localhost:5000/api/chat/giveme",
+					"http://15.188.63.103:8000/api/chat/giveme",
 					{},
 					{
 						headers: {
