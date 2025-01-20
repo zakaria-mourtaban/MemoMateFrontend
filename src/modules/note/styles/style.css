@@ -1,0 +1,123 @@
+.main-content {
+	display: flex;
+}
+
+.note-container
+{
+	max-height: 100px;
+}
+
+.content-area {
+	flex: 4;
+	margin: 1%;
+}
+
+.treeview {
+	flex: 1;
+	margin: 1%;
+}
+
+/* Kmenu Overlay */
+.kmenu-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Kmenu Container */
+.kmenu {
+	background: rgb(255,212,232);
+	border-radius: 8px;
+	padding: 16px;
+	width: 90%;
+	max-width: 500px;
+	/* box-shadow: 0px 8px 15px rgb(255,212,232); */
+	animation: slideIn 0.2s ease-in-out;
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+/* Kmenu Input */
+.kmenu-input {
+	width: 96.75%;
+	padding: 12px 0px 12px 16px;
+	background: #ffffff;
+	border: none;
+	border-radius: 6px;
+	color: rgb(0, 0, 0);
+	font-size: 1rem;
+	margin-bottom: 12px;
+	outline: none;
+}
+
+.kmenu-input::placeholder {
+	color: #3b3b3b;
+}
+
+/* Kmenu List */
+.kmenu-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	max-height: 300px;
+	overflow-y: auto;
+	padding: 8px 8px 0px 0px;
+}
+
+.kmenu-item {
+	padding: 12px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	color: rgb(0, 0, 0);
+	transition: background-color 0.2s ease-in-out;
+}
+
+.kmenu-item:hover,
+.kmenu-item-selected {
+	background-color: #fdb2d4;
+}
+
+.kmenu-item-disabled {
+	color: #6c6c80;
+	cursor: not-allowed;
+}
+
+/* Scrollbar Styling */
+.kmenu-list::-webkit-scrollbar {
+	width: 8px;
+}
+
+.kmenu-list::-webkit-scrollbar-thumb {
+	background-color: #ffffff;
+	border-radius: 4px;
+}
+
+.kmenu-list::-webkit-scrollbar-thumb:hover {
+	background-color: #ffffff;
+}
