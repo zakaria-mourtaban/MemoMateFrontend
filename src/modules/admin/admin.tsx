@@ -1,19 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {
-	Container,
-	Typography,
-	Grid,
-	Paper,
-	Button,
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Box,
-} from "@mui/material";
-import { apiCall } from "../core/utils/api";
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, Grid, Paper, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box } from '@mui/material';
+import { apiCall } from '../core/utils/api';
 
 interface Metrics {
 	totalUsers: number;
@@ -35,22 +22,12 @@ const Admin = () => {
 
 	useEffect(() => {
 		const fetchMetrics = async () => {
-			const response = await apiCall(
-				"GET",
-				"/api/admin/metrics",
-				null,
-				true
-			);
+			const response = await apiCall("GET", '/api/admin/metrics', null, true);
 			setMetrics(response.data);
 		};
 
 		const fetchUsers = async () => {
-			const response = await apiCall(
-				"GET",
-				"/api/admin/users",
-				null,
-				true
-			);
+			const response = await apiCall("GET", '/api/admin/users', null, true);
 			setUsers(response.data);
 		};
 
@@ -60,65 +37,29 @@ const Admin = () => {
 
 	return (
 		<Container>
-			<Grid container spacing={4}>
+			<Grid container spacing={4} marginTop={4}>
 				<Grid item xs={12} sm={6} md={3}>
-					<Paper
-						elevation={3}
-						sx={{
-							padding: 2,
-							textAlign: "center",
-							backgroundColor: "#f5f5f5",
-						}}
-					>
+					<Paper elevation={3} sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5' }}>
 						<Typography variant="h6">Total Users</Typography>
-						<Typography variant="h4" color="primary">
-							{metrics?.totalUsers}
-						</Typography>
+						<Typography variant="h4" color="primary">{metrics?.totalUsers}</Typography>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={6} md={3}>
-					<Paper
-						elevation={3}
-						sx={{
-							padding: 2,
-							textAlign: "center",
-							backgroundColor: "#f5f5f5",
-						}}
-					>
+					<Paper elevation={3} sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5' }}>
 						<Typography variant="h6">Active Users</Typography>
-						<Typography variant="h4" color="primary">
-							{metrics?.activeUsers}
-						</Typography>
+						<Typography variant="h4" color="primary">{metrics?.activeUsers}</Typography>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={6} md={3}>
-					<Paper
-						elevation={3}
-						sx={{
-							padding: 2,
-							textAlign: "center",
-							backgroundColor: "#f5f5f5",
-						}}
-					>
+					<Paper elevation={3} sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5' }}>
 						<Typography variant="h6">Total Workspaces</Typography>
-						<Typography variant="h4" color="primary">
-							{metrics?.totalWorkspaces}
-						</Typography>
+						<Typography variant="h4" color="primary">{metrics?.totalWorkspaces}</Typography>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={6} md={3}>
-					<Paper
-						elevation={3}
-						sx={{
-							padding: 2,
-							textAlign: "center",
-							backgroundColor: "#f5f5f5",
-						}}
-					>
+					<Paper elevation={3} sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5' }}>
 						<Typography variant="h6">Total Chats</Typography>
-						<Typography variant="h4" color="primary">
-							{metrics?.totalChats}
-						</Typography>
+						<Typography variant="h4" color="primary">{metrics?.totalChats}</Typography>
 					</Paper>
 				</Grid>
 			</Grid>
@@ -144,24 +85,11 @@ const Admin = () => {
 								<TableCell>{user.email}</TableCell>
 								<TableCell>{user.role}</TableCell>
 								<TableCell>
-									<Box sx={{ display: "flex", gap: 1 }}>
-										<Button
-											variant="contained"
-											color="error"
-											onClick={() => banUser(user._id)}
-										>
+									<Box sx={{ display: 'flex', gap: 1 }}>
+										<Button variant="contained" color="error" onClick={() => banUser(user._id)}>
 											Ban
 										</Button>
-										<Button
-											variant="contained"
-											color="primary"
-											onClick={() =>
-												changeUserRole(
-													user._id,
-													"admin"
-												)
-											}
-										>
+										<Button variant="contained" color="primary" onClick={() => changeUserRole(user._id, 'admin')}>
 											Make Admin
 										</Button>
 									</Box>
