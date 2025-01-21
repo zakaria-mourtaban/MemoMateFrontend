@@ -91,16 +91,13 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			});
 
 			fileInput.click();
-			console.log("File dialog opened");
 
 			const file = await fileSelected;
-			console.log("File selected:", file.name);
 
 			formData.append("file", file);
 			formData.append("name", file.name);
 
 			const token = getTokenFromCookie();
-			console.log("Token:", token);
 
 			const workspaceId = currentNode?.id
 				? currentNode.id
@@ -119,14 +116,10 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 				},
 			});
 
-			console.log("File upload successful:", response.data);
 			load();
 			return response;
 		} catch (error) {
-			console.error("File upload failed:", error);
 			if (axios.isAxiosError(error)) {
-				console.error("Response data:", error.response?.data);
-				console.error("Status code:", error.response?.status);
 			}
 			throw error; // Re-throw the error if needed
 		}
@@ -187,7 +180,6 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			load();
 			return response;
 		} catch (error) {
-			console.error(error);
 			await Swal.fire({
 				icon: "error",
 				title: "Upload Failed",
@@ -231,7 +223,6 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			return response;
 		} catch {}
 	};
-	console.log(data);
 	data[0]?.children && dispatch(setCurrentNode(data[0].children[0]));
 	return (
 		<div className="file-tree-container">
