@@ -21,7 +21,6 @@ const Workspaces = () => {
 			}
 		);
 		dispatch(setWorkspace(data.workspaces));
-		console.log(workspaces);
 	};
 
 	const addWorkspace = async () => {
