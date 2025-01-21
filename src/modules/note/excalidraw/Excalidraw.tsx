@@ -48,7 +48,6 @@ const ExcalidrawComponent = () => {
 				{},
 				true
 			);
-			console.log(res.data);
 			excalidrawAPI.updateScene({
 				elements: res.data.elements || [],
 				appState: res.data.appState || {},
@@ -59,7 +58,6 @@ const ExcalidrawComponent = () => {
 	};
 	useEffect(() => {
 		loaddata();
-		console.log("changed")
 	}, [current]);
 	return (
 		<div
