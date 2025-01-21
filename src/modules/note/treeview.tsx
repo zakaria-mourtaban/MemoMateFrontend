@@ -31,7 +31,6 @@ interface FileTreeViewProps {
 }
 
 axios.interceptors.request.use((request) => {
-	console.log("Request:", request);
 	return request;
 });
 
@@ -58,7 +57,6 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 	};
 
 	const handleDelete = async () => {
-		console.log(currentNode);
 		if (!currentNode) return;
 		await apiCall(
 			"PATCH",
@@ -110,7 +108,7 @@ const FileTreeView: React.FC<FileTreeViewProps> = ({ data, load }) => {
 			if (!workspaceId) {
 				throw new Error("No workspace ID found");
 			}
-
+			if (currentNode?.children === null) return
 			const response = await axios({
 				method: "POST",
 				url: `http://15.188.63.103:8000/api/workspace/${workspaceId}/add`,

@@ -29,7 +29,6 @@ const Chats = () => {
 						},
 					}
 				);
-				console.log(response.data);
 				if (response.data.chats) {
 					// Initialize messages as an empty array for each chat
 					const chatsWithMessages = response.data.chats.map(
@@ -51,7 +50,6 @@ const Chats = () => {
 					title: "Error",
 					text: "Failed to fetch chats. Please try again.",
 				});
-				console.error("Error fetching chats:", err);
 			} finally {
 				setLoading(false);
 			}
@@ -108,7 +106,6 @@ const Chats = () => {
 					title: "Error",
 					text: "Failed to send message. Please try again.",
 				});
-				console.error("Error sending message:", err);
 			} finally {
 				setIsSending(false); // Stop loading animation
 			}

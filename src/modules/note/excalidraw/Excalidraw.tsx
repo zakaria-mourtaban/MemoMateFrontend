@@ -86,7 +86,7 @@ const ExcalidrawComponent = () => {
 						},
 					}}
 					onChange={() => {
-						if (current?.children === null) return;
+						if (current?.children !== null) return;
 						handleSaveAsExcalidrawFile();
 					}}
 				>
