@@ -25,12 +25,10 @@ export const useNoteHandler = () => {
 	);
 
 	const commands = ["Create Diagram", "Create Chat"];
-	console.log(treeData);
 	const recursiveRename = (data) => {
 		if (!data) {
 			return null;
 		}
-		console.log(data);
 		return data.map((e) => ({
 			id: e._id,
 			name: e.name,
