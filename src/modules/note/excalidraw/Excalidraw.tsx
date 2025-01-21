@@ -5,9 +5,10 @@ import { apiCall } from "../../core/utils/api";
 import { useSelector } from "react-redux";
 import { RootState } from "store/store";
 import { debounce } from "lodash";
+import { useExcalidrawAPI } from "../../../context/excalidrawContext";
 
 const ExcalidrawComponent = () => {
-	const [excalidrawAPI, setExcalidrawAPI] = useState(null);
+	const [excalidrawAPI, setExcalidrawAPI] = useExcalidrawAPI();
 	const current = useSelector(
 		(state: RootState) => state.treeView.currentNode
 	);

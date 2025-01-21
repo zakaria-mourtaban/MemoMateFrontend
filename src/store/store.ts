@@ -76,6 +76,7 @@ const authReducer = (
 export const { setCollapsed, setCurrentNode } = treeViewSlice.actions;
 export const { setWorkspace } = workspaceApiSlice.actions;
 export const { setCurrent } = workspaceApiSlice.actions;
+export const { setExcalidrawApi } = ExcalidrawSlice.actions;
 
 const store = configureStore({
 	reducer: {

@@ -96,6 +96,7 @@ export const useNoteHandler = () => {
 					excalidrawAPI.addFiles(Object.values(files));
 				}
 
+				console.log(excalidrawAPI)
 				const sceneElements = await excalidrawAPI.getSceneElements();
 				excalidrawAPI.updateScene({
 					elements: [...sceneElements, ...excalidrawElements],
